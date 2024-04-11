@@ -1,8 +1,9 @@
 {
   "id": 2,
-  "name": "本地订阅",
+  "name": "内部订阅--统一维护",
   "version": 11,
   "author": "gkd",
+  "homepage": "http://git.corp.jia10000.cn:10000/automation/gkd-docs/src/branch/master/2.json",
   "globalGroups": [
     {
       "name": "开屏广告",
