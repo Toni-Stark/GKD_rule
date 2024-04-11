@@ -61,6 +61,25 @@
           ]
         }
       ]
+    },
+    {
+      "name": "个性化推荐",
+      "key": 9,
+      "matchTime": 10000,
+      "actionMaximum": 2,
+      "resetMatch": "app",
+      "actionCdKey": 0,
+      "actionMaximumKey": 0,
+      "order": 1,
+      "rules": [
+        {
+          "quickFind": true,
+          "key": 0,
+          "matches": [
+            "[text~=\".*推荐.*\" && text.length <= 15] < LinearLayout + [vid=\"iv_close\"]"
+          ]
+        }
+      ]
     }
   ],
   "categories": [
