@@ -36,7 +36,7 @@
           "quickFind": true,
           "key": 0,
           "matches": [
-            "[text^=\"隐私政策\"] +n LinearLayout > [text=\"同意\"]"
+            "[text^=\"隐私政策\"] +n LinearLayout > [text^=\"同意\"]"
           ]
         }
       ]
