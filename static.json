@@ -1,10 +1,10 @@
 {
   "id": 101,
   "name": "内部订阅--统一维护",
-  "version": 32,
+  "version": 31,
   "author": "gkd",
-  "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
-  "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
+  "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/2.json",
+  "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/2.json",
   "globalGroups": [
     {
       "name": "开屏广告",
