@@ -40,6 +40,25 @@
           ]
         }
       ]
+    },
+    {
+      "name": "弹窗广告",
+      "key": 6,
+      "matchTime": 10000,
+      "actionMaximum": 2,
+      "resetMatch": "app",
+      "actionCdKey": 0,
+      "actionMaximumKey": 0,
+      "order": 1,
+      "rules": [
+        {
+          "quickFind": true,
+          "key": 0,
+          "matches": [
+            "[vid=\"activityImageDraweeView\"] + [vid=\"closeImageView\"]"
+          ]
+        }
+      ]
     }
   ],
   "categories": [
