@@ -17,14 +17,14 @@
           "quickFind": true,
           "key": 0,
           "matches": [
-            "[text^=\"隐私政策\"] +n LinearLayout > [text=\"同意\"]"
+            "[text*=\"跳过\"][text.length<10][visibleToUser=true]"
           ]
         }
       ]
     },
     {
       "name": "隐私用户协议弹窗",
-      "key": -1,
+      "key": 4,
       "matchTime": 10000,
       "actionMaximum": 2,
       "resetMatch": "app",
@@ -36,7 +36,7 @@
           "quickFind": true,
           "key": 0,
           "matches": [
-            "[text*=\"跳过\"][text.length<10][visibleToUser=true]"
+            "[text^=\"隐私政策\"] +n LinearLayout > [text=\"同意\"]"
           ]
         }
       ]
@@ -44,110 +44,50 @@
   ],
   "categories": [
     {
-      "key":0,
+      "key": 0,
       "name": "开屏广告"
-    },{
-      "key":1,
+    },
+    {
+      "key": 1,
       "name": "青少年模式"
-    },{
-      "key":2,
+    },
+    {
+      "key": 2,
       "name": "更新提示"
-    },{
-      "key":3,"name":"评价提示"},{"key":4,"name":"通知提示"},{"key":5,"name":"定位提示"},{"key":-1,"name":"权限提示"},{"key":6,"name":"局部广告"},{"key":7,"name":"全屏广告"},{"key":8,"name":"分段广告"},{"key":9,"name":"功能类"}
+    },
+    {
+      "key": 3,
+      "name": "评价提示"
+    },
+    {
+      "key": 4,
+      "name": "通知提示"
+    },
+    {
+      "key": 5,
+      "name": "定位提示"
+    },
+    {
+      "key": -1,
+      "name": "权限提示"
+    },
+    {
+      "key": 6,
+      "name": "局部广告"
+    },
+    {
+      "key": 7,
+      "name": "全屏广告"
+    },
+    {
+      "key": 8,
+      "name": "分段广告"
+    },
+    {
+      "key": 9,
+      "name": "功能类"
+    }
   ],
   "apps": [
-    {
-      "id": "co.xingtuan.tingkeling",
-      "name": "停课铃",
-      "groups": [
-        {
-          "name": "[ChangeMe]规则名称-2024-03-22 13:52:22",
-          "key": 0,
-          "desc": "[ChangeMe]本规则由GKD网页端审查工具生成",
-          "rules": [
-            {
-              "matches": [
-                "[name=\"android.widget.TextView\"][text=\"同意\"]"
-              ],
-              "activityIds": [
-                "com.weather.spt.activity.MainActivity"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "me.piebridge.brevent",
-      "name": "黑阈",
-      "groups": [
-        {
-          "name": "权限不足弹窗",
-          "key": 0,
-          "desc": "点击取消",
-          "enable": false,
-          "quickFind": true,
-          "actionMaximum": 1,
-          "activityIds": [
-            "me.piebridge.brevent.ui.BreventActivity"
-          ],
-          "rules": [
-            {
-              "matches": [
-                "[id=\"android:id/message\"][text^=`黑阈服务权限不足`]",
-                "[text=`取消`][id^=`android:id/button`]"
-              ],
-              "snapshotUrls": [
-                "https://i.gkd.li/import/13218439"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "com.antfortune.wealth",
-      "name": "蚂蚁财富",
-      "groups": [
-        {
-          "name": "[ChangeMe]规则名称-2024-04-11 14:22:09",
-          "key": 0,
-          "desc": "[ChangeMe]本规则由GKD网页端审查工具生成",
-          "rules": [
-            {
-              "matches": [
-                "[id=\"com.antfortune.wealth.tablauncher:id/start_guide_viewpage\"] >2 [id=\"com.antfortune.wealth.tablauncher:id/guide_button\"]"
-              ],
-              "quickFind": true,
-              "activityIds": [
-                "com.alipay.android.launcher.guide.StartGuideActivity"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "com.anjuke.android.app",
-      "name": "安居客",
-      "groups": [
-        {
-          "name": "[ChangeMe]规则名称-2024-04-11 16:46:32",
-          "key": 0,
-          "desc": "[ChangeMe]本规则由GKD网页端审查工具生成",
-          "rules": [
-            {
-              "matches": [
-                "[text^=\"隐私政策\"] +n LinearLayout > [text=\"同意并继续\"]"
-              ],
-              "quickFind": true,
-              "activityIds": [
-                "com.anjuke.android.app.mainmodule.PrivacyActivity"
-              ]
-            }
-          ]
-        }
-      ]
-    }
   ]
 }
