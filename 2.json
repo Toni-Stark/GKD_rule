@@ -3,6 +3,8 @@
   "name": "内部订阅--统一维护",
   "version": 12,
   "author": "gkd",
+  "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/2.json",
+  "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/2.json",
   "globalGroups": [
     {
       "name": "开屏广告",
