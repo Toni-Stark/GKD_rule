@@ -1,7 +1,7 @@
 {
   "id": 101,
   "name": "内部订阅——统一维护",
-  "version": 45,
+  "version": 84,
   "author": "gkd",
   "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
   "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
@@ -29,13 +29,12 @@
       "key": -1,
       "matchTime": 10000,
       "actionMaximum": 2,
-      "resetMatch": "app",
+      "resetMatch": "activity",
       "actionCdKey": 0,
-      "actionMaximumKey": 0,
       "rules": [
         {
           "quickFind": true,
-          "key": 0,
+          "key": 1,
           "matches": [
             "[vid=\"permission_deny_button\" || vid=\"permission_allow_foreground_only_button\" || vid=\"permission_allow_one_time_button\"]"
           ]
@@ -72,7 +71,7 @@
           "quickFind": true,
           "key": 2,
           "matches": [
-            "[text~=\".*隐私政策.*\"]",
+            "[text~=\".*(隐私政策||隐私权政策).*\"]",
             "TextView <<n [id=\"android:id/content\"] >n [text=\"同意\"]"
           ]
         },
@@ -123,6 +122,27 @@
           "matches": [
             "[text~=\".*推荐.*\" && text.length <= 15] < LinearLayout + [vid=\"iv_close\"]"
           ]
+        },
+        {
+          "quickFind": true,
+          "key": 4,
+          "matches": [
+            "[vid=\"activityImageDraweeView\"] + [vid=\"closeImageView\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 5,
+          "matches": [
+            "[text~=\".*签到.*\" && text.length <= 15] <<n [id=\"android:id/content\"] >n [vid=\"cancel\"||vid=\"iv_close\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 6,
+          "matches": [
+            "[text~=\".*登录领.*\"] < ViewGroup - ViewGroup"
+          ]
         }
       ]
     },
@@ -144,6 +164,25 @@
           ]
         }
       ]
+    },
+    {
+      "name": "定位提示",
+      "key": 5,
+      "matchTime": 10000,
+      "actionMaximum": 5,
+      "resetMatch": "activity",
+      "actionCdKey": 10000,
+      "actionMaximumKey": 5,
+      "order": 1,
+      "rules": [
+        {
+          "quickFind": true,
+          "key": 0,
+          "matches": [
+            "[text~=\".*定位.*\" && text.length <= 15] <<n [vid~=\".*dialog.*\"] >n [text~=\".*开启.*\" && text.length <= 10]"
+          ]
+        }
+      ]
     }
   ],
   "apps": [
@@ -158,11 +197,11 @@
           "rules":[
             {
               "activityIds":"com.umetrip.android.msky.app.module.startup.GuidePrivacyDeclarationActivity",
-              "matches":"[vid=\"iv_bg\"]",
+              "matches":"[id=\"android:id/content\"] >n [vid=\"iv_bg\"]",
               "snapshotUrls":"https://i.gkd.li/snapshot/1712835336191"
             }
           ],
-          "enable":false
+          "enable":true
         },
         {
           "key": 6,
@@ -171,30 +210,62 @@
           "rules":[
             {
               "activityIds":"com.umetrip.android.msky.homepage.activity.UmeHomeActivity",
-              "matches":"[vid=\"tv_reject\"]",
+              "matches":"[id=\"android:id/content\"] >n [vid=\"tv_reject\"]",
               "snapshotUrls":"https://i.gkd.li/snapshot/1712917607209"
             }
           ],
-          "enable":false
+          "enable":true
         }
       ]
     },
     {
-      "id": "com.qq.ac.android",
-      "name": "腾讯漫画",
+      "id": "com.android.systemui",
+      "name": "系统界面",
       "groups":[
         {
-          "key": 0,
-          "name":"开屏广告",
-          "enable":false,
-          "desc":"触发点击操作",
+          "key": 4,
+          "name":"通知提示-通知授权",
+          "desc":"触发点击禁用的操作",
           "rules":[
             {
-              "activityIds":"com.qq.ac.android.splash.SplashActivity",
-              "matches":"[text*=\"跳过\"][text.length<10][visibleToUser=true]",
-              "snapshotUrls":"https://i.gkd.li/snapshot/1713166774064"
+              "activityIds":[],
+              "matches":"[text=\"通知授权\"] <<n [id=\"android:id/content\"] >n [text=\"允许\"]",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1713347885974"
             }
-          ]
+          ],
+          "enable":true
+        }
+      ]
+    },
+    {
+      "id": "com.android.permissioncontroller",
+      "name": "权限控制器",
+      "groups":[
+        {
+          "key": 5,
+          "name":"定位提示-定位授权",
+          "desc":"触发仅允许本次操作",
+          "rules":[
+            {
+              "activityIds":[],
+              "matches":"[text~=\".*定位手机权限.*\"] <<n [vid=\"grant_dialog\"] >n [vid=\"permission_allow_foreground_only_button\"]",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1713346978690"
+            }
+          ],
+          "enable":true
+        },
+        {
+          "key": 9,
+          "name":"功能类-电话授权",
+          "desc":"触发禁止的操作",
+          "rules":[
+            {
+              "activityIds":[],
+              "matches":"[text~=\".*请求电话权限.*\"] <<n [vid=\"grant_dialog\"] >n [vid=\"permission_deny_button\"]",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1713350952183"
+            }
+          ],
+          "enable":true
         }
       ]
     }
