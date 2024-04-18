@@ -1,7 +1,7 @@
 {
   "id": 101,
   "name": "内部订阅——统一维护",
-  "version": 84,
+  "version": 130,
   "author": "gkd",
   "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
   "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
@@ -10,16 +10,22 @@
       "name": "开屏广告",
       "key": 0,
       "matchTime": 10000,
-      "actionMaximum": 2,
       "resetMatch": "app",
-      "actionCdKey": 0,
-      "actionMaximumKey": 0,
+      "actionMaximumKey": 5,
       "rules": [
         {
           "quickFind": true,
           "key": 0,
           "matches": [
             "[text*=\"跳过\"][text.length<10][visibleToUser=true]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 1,
+          "desc": "穿山甲广告特殊标识符",
+          "matches": [
+            "[id~=\".*:id/tt_splash_view\"] >n  [id~=\".*:id/tt_splash_skip_btn\"]"
           ]
         }
       ]
@@ -45,7 +51,7 @@
       "name": "隐私用户协议弹窗",
       "key": 9,
       "matchTime": 10000,
-      "actionMaximum": 2,
+      "actionMaximum": 1,
       "resetMatch": "app",
       "actionCdKey": 0,
       "actionMaximumKey": 0,
@@ -54,6 +60,16 @@
         {
           "quickFind": true,
           "key": 0,
+          "matches": [
+            "[text~=\".*隐私政策.*\"] ",
+            "TextView <n LinearLayout > [text~=\".*阅读并同意.*\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 4,
+          "preKeys": [0],
+          "matchTime": 2000,
           "matches": [
             "[text~=\".*隐私政策.*\"]",
             "TextView +n LinearLayout > [text~=\".*同意.*\" && text.length<10]"
@@ -79,10 +95,9 @@
           "quickFind": true,
           "key": 3,
           "matches": [
-            "[vid=\"agree\"]"
+            "[vid=\"agree\" || vid=\"viewAgree\"]"
           ]
         }
-
       ]
     },
     {
@@ -273,47 +288,58 @@
   "categories": [
     {
       "key": 0,
-      "name": "开屏广告"
+      "name": "开屏广告",
+      "enable":true
     },
     {
       "key": 1,
-      "name": "青少年模式"
+      "name": "青少年模式",
+      "enable":true
     },
     {
       "key": 2,
-      "name": "更新提示"
+      "name": "更新提示",
+      "enable":true
     },
     {
       "key": 3,
-      "name": "评价提示"
+      "name": "评价提示",
+      "enable":true
     },
     {
       "key": 4,
-      "name": "通知提示"
+      "name": "通知提示",
+      "enable":true
     },
     {
       "key": 5,
-      "name": "定位提示"
+      "name": "定位提示",
+      "enable":true
     },
     {
       "key": -1,
-      "name": "权限提示"
+      "name": "权限提示",
+      "enable":true
     },
     {
       "key": 6,
-      "name": "局部广告"
+      "name": "局部广告",
+      "enable":true
     },
     {
       "key": 7,
-      "name": "全屏广告"
+      "name": "全屏广告",
+      "enable":true
     },
     {
       "key": 8,
-      "name": "分段广告"
+      "name": "分段广告",
+      "enable":true
     },
     {
       "key": 9,
-      "name": "功能类"
+      "name": "功能类",
+      "enable":true
     }
   ]
 }
