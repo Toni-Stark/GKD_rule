@@ -1,7 +1,7 @@
 {
   "id": 101,
   "name": "内部订阅——统一维护",
-  "version": 130,
+  "version": 150,
   "author": "gkd",
   "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
   "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
@@ -44,6 +44,14 @@
           "matches": [
             "[vid=\"permission_deny_button\" || vid=\"permission_allow_foreground_only_button\" || vid=\"permission_allow_one_time_button\"]"
           ]
+        },
+        {
+          "quickFind": true,
+          "key":2,
+          "desc": "空间访问权限",
+          "matches": [
+            "[text~=\".*空间权限.*\"] <<n [id=\"android:id/content\"] >n [text~=\"去授权\"]"
+          ]
         }
       ]
     },
@@ -51,7 +59,7 @@
       "name": "隐私用户协议弹窗",
       "key": 9,
       "matchTime": 10000,
-      "actionMaximum": 1,
+      "actionMaximum": 3,
       "resetMatch": "app",
       "actionCdKey": 0,
       "actionMaximumKey": 0,
@@ -67,12 +75,11 @@
         },
         {
           "quickFind": true,
-          "key": 4,
+          "key": 40,
           "preKeys": [0],
-          "matchTime": 2000,
           "matches": [
             "[text~=\".*隐私政策.*\"]",
-            "TextView +n LinearLayout > [text~=\".*同意.*\" && text.length<10]"
+            "TextView <n LinearLayout > [text~=\".*同意.*\" && text.length<10]"
           ]
         },
         {
@@ -87,8 +94,8 @@
           "quickFind": true,
           "key": 2,
           "matches": [
-            "[text~=\".*(隐私政策||隐私权政策).*\"]",
-            "TextView <<n [id=\"android:id/content\"] >n [text=\"同意\"]"
+            "[text~=\".*(隐私政策||隐私权政策||隐私条款).*\"]",
+            "TextView <<n [id=\"android:id/content\"] >n [text~=\"同意.*\"]"
           ]
         },
         {
@@ -158,6 +165,39 @@
           "matches": [
             "[text~=\".*登录领.*\"] < ViewGroup - ViewGroup"
           ]
+        },
+        {
+          "quickFind": true,
+          "key": 7,
+          "matches": [
+            "[left>=50][right>=50] >n Image[width<=80][height<=80][left>=600] < View[width<=100][height<=100]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 8,
+          "desc": "穿山甲内部关闭弹窗广告",
+          "matches": [
+            "[id~=\".*:id/tt_video_ad_close_layout.*\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 9,
+          "action": "clickCenter",
+          "desc": "穿山甲内部跳过弹窗广告",
+          "matches": [
+            "[left>=50][right>=50] >n ImageView[width<=80][height<=80][left>=600] < RelativeLayout[width<=100][height<=100]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 10,
+          "action": "clickCenter",
+          "desc": "大麦类似内部弹窗广告",
+          "matches": [
+            "[id=\".*:id/homepage_popup_window_close_btn\"]"
+          ]
         }
       ]
     },
@@ -195,6 +235,25 @@
           "key": 0,
           "matches": [
             "[text~=\".*定位.*\" && text.length <= 15] <<n [vid~=\".*dialog.*\"] >n [text~=\".*开启.*\" && text.length <= 10]"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "更新提示",
+      "key": 2,
+      "matchTime": 10000,
+      "actionMaximum": 5,
+      "resetMatch": "activity",
+      "actionCdKey": 10000,
+      "actionMaximumKey": 5,
+      "order": 1,
+      "rules": [
+        {
+          "quickFind": true,
+          "key": 0,
+          "matches": [
+            "[text~=\".*升级.*\"] <n LinearLayout > [text~=\".*下次.*\"]"
           ]
         }
       ]
@@ -263,7 +322,7 @@
           "rules":[
             {
               "activityIds":[],
-              "matches":"[text~=\".*定位手机权限.*\"] <<n [vid=\"grant_dialog\"] >n [vid=\"permission_allow_foreground_only_button\"]",
+              "matches":"[text~=\".*定位手机权限.*\"] <<n [vid=\"grant_dialog\"] >n [vid=\"permission_allow_foreground_only_button\" || text~=\".*仅使用时允许.*\"]",
               "snapshotUrls":"https://i.gkd.li/snapshot/1713346978690"
             }
           ],
@@ -271,13 +330,40 @@
         },
         {
           "key": 9,
-          "name":"功能类-电话授权",
-          "desc":"触发禁止的操作",
+          "name":"功能类权限",
           "rules":[
             {
+              "key": 0,
               "activityIds":[],
+              "desc":"禁止电话授权的操作",
               "matches":"[text~=\".*请求电话权限.*\"] <<n [vid=\"grant_dialog\"] >n [vid=\"permission_deny_button\"]",
               "snapshotUrls":"https://i.gkd.li/snapshot/1713350952183"
+            },
+            {
+              "key": 1,
+              "activityIds":[],
+              "desc":"允许存储授权操作",
+              "matches":"[text~=\".*存储权限.*\"] <<n [vid=\"grant_dialog\"] >n [vid=\"permission_allow_button\"]",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1713346978690"
+            }
+          ],
+          "enable":true
+        }
+      ]
+    },
+    {
+      "id": "com.cctv.yangshipin.app.androidp",
+      "name": "央视频",
+      "groups":[
+        {
+          "key": 0,
+          "name":"初始导航页",
+          "desc":"触发导航点击操作",
+          "rules":[
+            {
+              "activityIds":"com.tencent.videolite.android.ui.GuidePageActivity",
+              "matches":"[vid=\"btn_start\"]",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1713433503485"
             }
           ],
           "enable":true
