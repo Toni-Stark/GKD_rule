@@ -17,7 +17,7 @@
           "quickFind": true,
           "key": 0,
           "matches": [
-            "[text*=\"跳过\"][text.length<10][visibleToUser=true]"
+            "[text*=\"跳过\" || desc*=\"跳过\"][text.length<10][visibleToUser=true]"
           ]
         },
         {
@@ -25,7 +25,7 @@
           "key": 1,
           "desc": "穿山甲广告特殊标识符",
           "matches": [
-            "[id~=\".*:id/tt_splash_view\"] >n  [id~=\".*:id/tt_splash_skip_btn\"]"
+            "[id*=\":id/tt_splash_view\"] >n  [id*=\":id/tt_splash_skip_btn\"]"
           ]
         }
       ]
@@ -50,7 +50,7 @@
           "key":2,
           "desc": "空间访问权限",
           "matches": [
-            "[text~=\".*空间权限.*\"] <<n [id=\"android:id/content\"] >n [text~=\"去授权\"]"
+            "[text*=\"空间权限\"] <<n [id=\"android:id/content\"] >n [text~=\"去授权\"]"
           ]
         }
       ]
@@ -69,8 +69,8 @@
           "quickFind": true,
           "key": 0,
           "matches": [
-            "[text~=\".*隐私政策.*\"] ",
-            "TextView <n LinearLayout > [text~=\".*阅读并同意.*\"]"
+            "[text*=\"隐私政策\"] ",
+            "TextView <n LinearLayout > [text*=\"阅读并同意\"]"
           ]
         },
         {
@@ -78,15 +78,15 @@
           "key": 40,
           "preKeys": [0],
           "matches": [
-            "[text~=\".*隐私政策.*\"]",
-            "TextView <n LinearLayout > [text~=\".*同意.*\" && text.length<10]"
+            "[text*=\"隐私政策\"]",
+            "TextView <n LinearLayout > [text*=\"同意\" && text.length<10]"
           ]
         },
         {
           "quickFind": true,
           "key": 1,
           "matches": [
-            "[text~=\".*隐私声明.*\"] <2 LinearLayout",
+            "[text*=\"隐私声明\"] <2 LinearLayout",
             "LinearLayout >2 [text=\"同意\"]"
           ]
         },
@@ -94,8 +94,8 @@
           "quickFind": true,
           "key": 2,
           "matches": [
-            "[text~=\".*(隐私政策||隐私权政策||隐私条款).*\"]",
-            "TextView <<n [id=\"android:id/content\"] >n [text~=\"同意.*\"]"
+            "[text*=\"(隐私政策||隐私权政策||隐私条款)\"]",
+            "TextView <<n [id=\"android:id/content\"] >n [text*=\"同意\"]"
           ]
         },
         {
@@ -142,7 +142,7 @@
           "quickFind": true,
           "key": 3,
           "matches": [
-            "[text~=\".*推荐.*\" && text.length <= 15] < LinearLayout + [vid=\"iv_close\"]"
+            "[text*=\"推荐\" && text.length <= 15] < LinearLayout + [vid=\"iv_close\"]"
           ]
         },
         {
@@ -156,14 +156,14 @@
           "quickFind": true,
           "key": 5,
           "matches": [
-            "[text~=\".*签到.*\" && text.length <= 15] <<n [id=\"android:id/content\"] >n [vid=\"cancel\"||vid=\"iv_close\"]"
+            "[text*=\"签到\" && text.length <= 15] <<n [id=\"android:id/content\"] >n [vid=\"cancel\"||vid=\"iv_close\"]"
           ]
         },
         {
           "quickFind": true,
           "key": 6,
           "matches": [
-            "[text~=\".*登录领.*\"] < ViewGroup - ViewGroup"
+            "[text*=\"登录领\"] < ViewGroup - ViewGroup"
           ]
         },
         {
@@ -178,7 +178,7 @@
           "key": 8,
           "desc": "穿山甲内部关闭弹窗广告",
           "matches": [
-            "[id~=\".*:id/tt_video_ad_close_layout.*\"]"
+            "[id*=\":id/tt_video_ad_close_layout\"]"
           ]
         },
         {
@@ -196,7 +196,7 @@
           "action": "clickCenter",
           "desc": "大麦类似内部弹窗广告",
           "matches": [
-            "[id=\".*:id/homepage_popup_window_close_btn\"]"
+            "[id*=\":id/homepage_popup_window_close_btn\"]"
           ]
         }
       ]
@@ -234,7 +234,7 @@
           "quickFind": true,
           "key": 0,
           "matches": [
-            "[text~=\".*定位.*\" && text.length <= 15] <<n [vid~=\".*dialog.*\"] >n [text~=\".*开启.*\" && text.length <= 10]"
+            "[text*=\"定位\" && text.length <= 15] <<n [vid*=\"dialog\"] >n [text*=\"开启\" && text.length <= 10]"
           ]
         }
       ]
@@ -253,7 +253,7 @@
           "quickFind": true,
           "key": 0,
           "matches": [
-            "[text~=\".*升级.*\"] <n LinearLayout > [text~=\".*下次.*\"]"
+            "[text*=\"升级\"] <n LinearLayout > [text*=\"下次\"]"
           ]
         }
       ]
@@ -322,7 +322,7 @@
           "rules":[
             {
               "activityIds":[],
-              "matches":"[text~=\".*定位手机权限.*\"] <<n [vid=\"grant_dialog\"] >n [vid=\"permission_allow_foreground_only_button\" || text~=\".*仅使用时允许.*\"]",
+              "matches":"[text*=\"定位手机权限\"] <<n [vid=\"grant_dialog\"] >n [vid=\"permission_allow_foreground_only_button\" || text*=\"仅使用时允许\"]",
               "snapshotUrls":"https://i.gkd.li/snapshot/1713346978690"
             }
           ],
@@ -336,14 +336,14 @@
               "key": 0,
               "activityIds":[],
               "desc":"禁止电话授权的操作",
-              "matches":"[text~=\".*请求电话权限.*\"] <<n [vid=\"grant_dialog\"] >n [vid=\"permission_deny_button\"]",
+              "matches":"[text*=\"请求电话权限\"] <<n [vid=\"grant_dialog\"] >n [vid=\"permission_deny_button\"]",
               "snapshotUrls":"https://i.gkd.li/snapshot/1713350952183"
             },
             {
               "key": 1,
               "activityIds":[],
               "desc":"允许存储授权操作",
-              "matches":"[text~=\".*存储权限.*\"] <<n [vid=\"grant_dialog\"] >n [vid=\"permission_allow_button\"]",
+              "matches":"[text*=\"存储权限\"] <<n [vid=\"grant_dialog\"] >n [vid=\"permission_allow_button\"]",
               "snapshotUrls":"https://i.gkd.li/snapshot/1713346978690"
             }
           ],
