@@ -1,7 +1,7 @@
 {
   "id": 101,
   "name": "内部订阅——统一维护",
-  "version": 170,
+  "version": 171,
   "author": "gkd",
   "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
   "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
@@ -27,7 +27,24 @@
           "matches": [
             "[id*=\":id/tt_splash_view\"] >n  [id*=\":id/tt_splash_skip_btn\"]"
           ]
-        }
+        },
+        {
+          "quickFind": true,
+          "key": 2,
+          "desc": "引导屏",
+          "matches": [
+            "LinearLayout > ImageView +2 ImageView"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 3,
+          "preKeys": [2],
+          "matches": [
+            "[id=\"android:id/content\"]"
+          ]
+        },
+
       ]
     },
     {
