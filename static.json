@@ -1,7 +1,7 @@
 {
   "id": 101,
   "name": "内部订阅——统一维护",
-  "version": 150,
+  "version": 160,
   "author": "gkd",
   "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
   "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
@@ -17,7 +17,7 @@
           "quickFind": true,
           "key": 0,
           "matches": [
-            "[text*=\"跳过\" || desc*=\"跳过\"][text.length<10][visibleToUser=true]"
+            "[text*=\"跳过\" || desc*=\"跳过\"][text.length<10 || desc.length<10][visibleToUser=true]"
           ]
         },
         {
@@ -47,7 +47,7 @@
         },
         {
           "quickFind": true,
-          "key":2,
+          "key": 2,
           "desc": "空间访问权限",
           "matches": [
             "[text*=\"空间权限\"] <<n [id=\"android:id/content\"] >n [text~=\"去授权\"]"
@@ -68,39 +68,45 @@
         {
           "quickFind": true,
           "key": 0,
-          "matches": [
-            "[text*=\"隐私政策\"] ",
-            "TextView <n LinearLayout > [text*=\"阅读并同意\"]"
-          ]
-        },
-        {
-          "quickFind": true,
-          "key": 40,
-          "preKeys": [0],
+          "order": 0,
           "matches": [
             "[text*=\"隐私政策\"]",
-            "TextView <n LinearLayout > [text*=\"同意\" && text.length<10]"
+            "TextView <<n LinearLayout > [text*=\"阅读并同意\"]"
           ]
         },
-        {
-          "quickFind": true,
-          "key": 1,
-          "matches": [
-            "[text*=\"隐私声明\"] <2 LinearLayout",
-            "LinearLayout >2 [text=\"同意\"]"
-          ]
-        },
+
         {
           "quickFind": true,
           "key": 2,
+          "order": 2,
+          "preKeys": [0],
           "matches": [
-            "[text*=\"(隐私政策||隐私权政策||隐私条款)\"]",
-            "TextView <<n [id=\"android:id/content\"] >n [text*=\"同意\"]"
+            "[text*=\"阅读并同意\"]",
+            "TextView <<n LinearLayout >n [text!*=\"不同意\" && text*=\"同意\" && text.length<=5]"
           ]
         },
         {
           "quickFind": true,
           "key": 3,
+          "order": 3,
+          "matches": [
+            "[text*=\"隐私政策\" || text*=\"隐私协议\" || text*=\"隐私声明\" || text*=\"隐私条款政策\"]",
+            "TextView <<n LinearLayout >n [text=\"同意\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 4,
+          "order": 4,
+          "matches": [
+            "[text*=\"隐私政策\" || text*=\"隐私协议\" || text*=\"隐私声明\" || text*=\"隐私条款政策\"]",
+            "TextView <<n LinearLayout >n [text!*=\"不同意\" && text*=\"同意\" && text.length<=5]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 5,
+          "order": 5,
           "matches": [
             "[vid=\"agree\" || vid=\"viewAgree\"]"
           ]
