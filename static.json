@@ -1,7 +1,7 @@
 {
   "id": 101,
   "name": "内部订阅——统一维护",
-  "version": 171,
+  "version": 235,
   "author": "gkd",
   "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
   "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
@@ -33,7 +33,7 @@
           "key": 2,
           "desc": "引导屏",
           "matches": [
-            "LinearLayout > ImageView +2 ImageView"
+            "LinearLayout > ImageView +2 ImageView[top>1000]"
           ]
         },
         {
@@ -43,7 +43,7 @@
           "matches": [
             "[id=\"android:id/content\"]"
           ]
-        },
+        }
 
       ]
     },
@@ -76,6 +76,22 @@
           "desc": "权限申请",
           "matches": [
             "[text*=\"权限申请\"] <<n * >n [text*=\"授权\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 4,
+          "desc": "消息推送",
+          "matches": [
+            "[text*=\"消息推送\"] +n [vid=\"cancel\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 5,
+          "desc": "消息推送",
+          "matches": [
+            "[text*=\"通知类型\"] +n LinearLayout > [text*=\"暂不开启\"]"
           ]
         }
       ]
@@ -226,7 +242,7 @@
           "action": "clickCenter",
           "desc": "穿山甲内部跳过弹窗广告",
           "matches": [
-            "[left>=50][right>=50] >n ImageView[width<=80][height<=80][left>=600] < RelativeLayout[width<=100][height<=100]"
+            "[left>=50][right>=50] >n ImageView[width<=80][height<=80][left>=600] < RelativeLayout[width<=100][height<=100][left>=210][top=400]"
           ]
         },
         {
@@ -236,6 +252,24 @@
           "desc": "大麦类似内部弹窗广告",
           "matches": [
             "[id*=\":id/homepage_popup_window_close_btn\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 11,
+          "action": "clickCenter",
+          "desc": "芒果TV类弹窗广告",
+          "matches": [
+            "[vid=\"btnClose\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 12,
+          "action": "clickCenter",
+          "desc": "弹窗广告",
+          "matches": [
+            "Image <<n View > TextView[width<120][height<120][clickable=true]"
           ]
         }
       ]
@@ -254,7 +288,7 @@
           "quickFind": true,
           "key": 0,
           "matches": [
-            "[text^=\"青少年\"] <<n [id=\"android:id/content\"] >n [text^=\"我知道了\"]"
+            "[text*=\"青少年\"] <<n [id=\"android:id/content\"] >n [text^=\"我知道了\"]"
           ]
         }
       ]
@@ -293,6 +327,80 @@
           "key": 0,
           "matches": [
             "[text*=\"升级\"] <n LinearLayout > [text*=\"下次\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "首屏列表滚动1",
+      "key": 10,
+      "actionMaximumKey": 5,
+      "resetMatch": "activity",
+      "actionCdKey": 3000,
+      "rules": [
+        {
+          "key": 1,
+          "actionCd": 2000,
+          "order": 1,
+          "action": "handleUp",
+          "matches": [
+            "[width>1000] > @RecyclerView"
+          ]
+        },
+        {
+          "key": 2,
+          "actionCd": 2000,
+          "order": 2,
+          "action": "handleUp",
+          "matches": [
+            "ViewPager[width>1000][height>1500] > RelativeLayout -2 RelativeLayout +1 RelativeLayout >n RecyclerView"
+          ]
+        },
+        {
+          "key": 3,
+          "actionCd": 2000,
+          "order": 3,
+          "action": "handleUp",
+          "matches": [
+            "@ViewPager[width>1000][height>1500]"
+          ]
+        },
+        {
+          "key": 4,
+          "actionCd": 2000,
+          "order": 5,
+          "action": "handleUp",
+          "matches": [
+            "ViewGroup[width>1000] > @RecyclerView"
+          ]
+        },
+        {
+          "key": 5,
+          "actionCd": 2000,
+          "order": 6,
+          "action": "handleUp",
+          "matches": [
+            "ViewPager[width>1000][height>1500] >n ViewGroup >n @RelativeLayout"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "退出搜索页面",
+      "key": 11,
+      "matchTime": 10000,
+      "actionMaximum": 1,
+      "resetMatch": "activity",
+      "actionCdKey": 10000,
+      "actionMaximumKey": 1,
+      "order": 1,
+      "rules": [
+        {
+          "key": 1,
+          "quickFind": true,
+          "actionMaximum": 1,
+          "matches": [
+            "[vid=\"search_input\"] << LinearLayout + [vid=\"search_cancle\"]"
           ]
         }
       ]
@@ -408,6 +516,71 @@
           "enable":true
         }
       ]
+    },
+    {
+      "id": "com.vivo.hybrid",
+      "name": "快应用框架服务",
+      "groups":[
+        {
+          "key": 9,
+          "name":"订阅消息权限",
+          "desc":"触发不允许本次操作",
+          "rules":[
+            {
+              "activityIds":[],
+              "matches":"[text*=\"订阅消息\"] <n LinearLayout + [vid*=\"close\"]",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1718619996655"
+            }
+          ],
+          "enable":true
+        }
+      ]
+    },
+    {
+      "id": "com.sina.weibo",
+      "name": "微博",
+      "groups":[
+        {
+          "key": 0,
+          "name":"底部tab栏",
+          "desc":"触发Tab切换操作",
+          "rules":[
+            {
+              "activityIds":"com.sina.weibo.MainTabActivity",
+              "action": "clickCenter",
+              "actionCd": 30000,
+              "actionDelay": 5000,
+              "matches":"LinearLayout[top>1500] > FrameLayout[index=1] > FrameLayout[text!=\"视频\"][desc!=\"视频\"][text!=\"短剧\"][desc!=\"短剧\"]",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1718949295967"
+            },
+            {
+              "activityIds":"com.sina.weibo.MainTabActivity",
+              "action": "clickCenter",
+              "actionCd": 30000,
+              "actionDelay": 10000,
+              "matches":"LinearLayout[top>1500] > FrameLayout[index=2] > FrameLayout",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1718949295967"
+            },
+            {
+              "activityIds":"com.sina.weibo.MainTabActivity",
+              "action": "clickCenter",
+              "actionCd": 30000,
+              "actionDelay": 15000,
+              "matches":"LinearLayout[top>1500] > FrameLayout[index=3] > FrameLayout",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1718949295967"
+            },
+            {
+              "activityIds":"com.sina.weibo.MainTabActivity",
+              "action": "clickCenter",
+              "actionCd": 30000,
+              "actionDelay": 20000,
+              "matches":"LinearLayout[top>1500] > FrameLayout[index=4] > FrameLayout",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1718949295967"
+            }
+          ],
+          "enable":true
+        }
+      ]
     }
   ],
   "categories": [
@@ -464,6 +637,21 @@
     {
       "key": 9,
       "name": "功能类",
+      "enable":true
+    },
+    {
+      "key": 10,
+      "name": "列表页滚动一类",
+      "enable":true
+    },
+    {
+      "key": 11,
+      "name": "退出搜索页面",
+      "enable":true
+    },
+    {
+      "key": 12,
+      "name": "tab页切换",
       "enable":true
     }
   ]
