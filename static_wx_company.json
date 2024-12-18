@@ -1,10 +1,10 @@
 {
-  "id": 101,
-  "name": "内部订阅——统一维护",
-  "version": 307,
+  "id": 106,
+  "name": "自动化订阅——统一维护",
+  "version": 89,
   "author": "gkd",
-  "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
-  "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
+  "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/auto_check_tab.json",
+  "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/auto_check_tab.json",
   "globalGroups": [
     {
       "name": "开屏广告",
@@ -62,7 +62,16 @@
           "matches": [
             "ImageView[clickable=true] + View[clickable=true&&width=110&&height=110]"
           ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 7,
+          "matches": [
+            "ImageView[childCount=0&&clickable=true&&width>990&&height>2000&&left=0&&top=0]"
+          ]
         }
+
       ]
     },
     {
@@ -134,14 +143,14 @@
           "key": 2,
           "actionCd": 2000,
           "matches": [
-            "[text*=\"已阅读并\"] - [width<60&&height<60]"
+            "[text*=\"已阅读并\" || desc*=\"已阅读并\"] - [width<60&&height<60]"
           ]
         },
         {
           "key": 5,
           "actionCd": 2000,
           "matches": [
-            "[text*=\"表示同意\"] - [width<70&&height<70]"
+            "[text*=\"表示同意\" || desc*=\"表示同意\"] - [width<70&&height<70]"
           ]
         },
         {
@@ -149,7 +158,7 @@
           "order": 10,
           "actionCd": 2000,
           "matches": [
-            "[text*=\"隐私\"] <<n FrameLayout >n [text=\"同意\"||text=\"同意并继续\"||text=\"同意并登录\"||text=\"同意并接受\"]"
+            "[text*=\"隐私\" || desc*=\"隐私\"] <<n FrameLayout >n [text=\"同意\"||text=\"同意并继续\"||text=\"同意并登录\"||text=\"同意并接受\"||desc=\"同意\"||desc=\"同意并继续\"||desc=\"同意并登录\"||desc=\"同意并接受\"]"
           ]
         },
         {
@@ -157,9 +166,9 @@
           "order": 12,
           "actionCd": 2000,
           "matches": [
-            "[text*=\"隐私\"] <<n FrameLayout >n [text=\"同意\"||text=\"同意并继续\"||text=\"同意并登录\" || text=\"已阅读并同意\"]"
+              "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n [text=\"同意\"||text=\"同意并继续\"||text=\"同意并登录\" || text=\"已阅读并同意\"||desc=\"同意\"||desc=\"同意并继续\"||desc=\"同意并登录\" || desc=\"已阅读并同意\"]"
           ]
-        }
+        } 
       ]
     },
     {
@@ -337,6 +346,16 @@
         },
         {
           "quickFind": true,
+          "key": 19,
+          "actionCd": 1000,
+          "action": "clickCenter",
+          "desc": "弹窗广告",
+          "matches": [
+            "[text*=\"跳过\" || desc*=\"跳过\"][text.length<10 || desc.length<10][visibleToUser=true]"
+          ]
+        },
+        {
+          "quickFind": true,
           "key": 20,
           "actionCd": 1000,
           "action": "clickCenter",
@@ -347,12 +366,57 @@
         },
         {
           "quickFind": true,
-          "key": 19,
+          "key": 21,
           "actionCd": 1000,
           "action": "clickCenter",
           "desc": "弹窗广告",
           "matches": [
-            "[text*=\"跳过\" || desc*=\"跳过\"][text.length<10 || desc.length<10][visibleToUser=true]"
+            "[childCount>20] + [left>400&&right<650]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 22,
+          "actionCd": 1000,
+          "desc": "弹窗广告",
+          "matches": [
+            "[text*=\"广告\"] + [width=90&&height=90]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 23,
+          "actionCd": 1000,
+          "desc": "弹窗广告",
+          "matches": [
+            "[id*=\"dialog_close\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 24,
+          "actionCd": 1000,
+          "desc": "弹窗广告",
+          "matches": [
+            "[id*=\"_close\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 25,
+          "actionCd": 1000,
+          "desc": "弹窗广告",
+          "matches": [
+            "[id*=\"_enter\"&&childCount=0]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 26,
+          "actionCd": 1000,
+          "desc": "弹窗广告",
+          "matches": [
+            "[text*=\"取消\"] +n [text*=\"允许授权\"]"
           ]
         }
       ]
@@ -424,182 +488,47 @@
       ]
     },
     {
-      "name": "退出搜索页面",
-      "key": 11,
-      "matchTime": 10000,
-      "actionMaximum": 1,
-      "resetMatch": "activity",
-      "actionCdKey": 10000,
-      "actionMaximumKey": 1,
-      "order": 1,
-      "rules": [
-        {
-          "key": 1,
-          "quickFind": true,
-          "actionMaximum": 1,
-          "matches": [
-            "[vid=\"search_input\"] << LinearLayout + [vid=\"search_cancle\"]"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "tab页面",
+      "name": "判断是否首页",
       "key": 12,
-      "matchTime": 10000,
-      "actionMaximum": 1,
       "resetMatch": "app",
-      "actionCdKey": 10000,
-      "actionMaximumKey": 1,
-      "order": 1,
+      "actionMaximum": 1,
+      "actionCd": 2000,
       "rules": [
         {
           "key": 1,
-          "quickFind": true,
-          "actionMaximum": 1,
-          "action": "clickPosition",
+          "action": "onePathClickTab",
           "matches": [
-            "[childCount<=5&&childCount>=2&&top>=1900&&left=0&&width>1000&&height>100&&bottom<2280]"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "首屏列表滚动",
-      "key": 10,
-      "resetMatch": "activity",
-      "actionCdKey": 0,
-      "matchDelay": 1000,
-      "rules": [
-        {
-          "key": 0,
-          "actionCd": 2000,
-          "order": 0,
-          "action": "handleUp",
-          "matches": [
-            "[id=\"android:id/content\"] >n ScrollView[width>1000&&height>1800]"
-          ]
-        },
-        {
-          "key": 1,
-          "actionCd": 2000,
-          "order": 1,
-          "action": "handleUp",
-          "matches": [
-            "[width>1000] > @RecyclerView"
+            "[bottom>=2390&&left<20&&right>1040&&top>2200&&height>120&&childCount>1]"
           ]
         },
         {
           "key": 2,
-          "actionCd": 2000,
-          "order": 2,
-          "action": "handleUp",
+          "action": "onePathClickTab",
           "matches": [
-            "ViewPager[width>1000][height>1500] > RelativeLayout -2 RelativeLayout +1 RelativeLayout >n RecyclerView[height>1800]"
-          ]
-        },
-        {
-          "key": 3,
-          "actionCd": 2000,
-          "order": 3,
-          "action": "handleUp",
-          "matches": [
-            "@ViewPager[width>1000][height>1800]"
-          ]
-        },
-        {
-          "key": 4,
-          "actionCd": 2000,
-          "order": 4,
-          "action": "handleUp",
-          "matches": [
-            "ViewGroup[width>1000] > @RecyclerView[height>1800]"
-          ]
-        },
-        {
-          "key": 5,
-          "actionCd": 2000,
-          "order": 5,
-          "action": "handleUp",
-          "matches": [
-            "ViewPager[width>1000][height>1500] >n ViewGroup >n @RelativeLayout[height>1800]"
-          ]
-        },
-        {
-          "key": 6,
-          "actionCd": 2000,
-          "order": 6,
-          "action": "handleUp",
-          "matches": [
-            "[id=\"android:id/content\"] >n ListView[height>1800]"
-          ]
-        },
-        {
-          "key": 7,
-          "actionCd": 2000,
-          "order": 7,
-          "action": "handleUp",
-          "matches": [
-            "[childCount<=5&&childCount>=2&&top>=1900&&left=0&&width>1000&&height>100] - [left=0&&width>1000&&height>1800]"
+            "[bottom>=2100&&left<20&&right>1040&&top>2100&&height>120&&childCount>1]"
           ]
         }
       ]
     },
     {
-      "name": "登录账号",
+      "name": "导航页面",
       "key": 13,
-      "matchTime": 10000,
-      "actionMaximum": 1,
       "resetMatch": "activity",
-      "actionCdKey": 10000,
-      "actionMaximumKey": 1,
-      "order": 1,
+      "actionMaximum": 5,
+      "actionCd": 2000,
       "rules": [
         {
           "key": 1,
-          "quickFind": true,
-          "actionMaximum": 1,
-          "action": "inputUserName",
+          "action": "handleStart",
+          "actionCd": 2000,
           "matches": [
-            "[text*=\"登录\"] <<n [id=\"android:id/content\"] >n [text=\"手机号\"&&id*=\"phone\"&&focusable=true]"
+            "ViewPager[childCount>=2]"
           ]
         }
       ]
     }
   ],
   "apps": [
-    {
-      "id": "com.umetrip.android.msky.app",
-      "name": "航旅纵横",
-      "groups":[
-        {
-          "key": 0,
-          "name":"初始导航页",
-          "desc":"触发导航点击操作",
-          "rules":[
-            {
-              "activityIds":"com.umetrip.android.msky.app.module.startup.GuidePrivacyDeclarationActivity",
-              "matches":"[id=\"android:id/content\"] >n [vid=\"iv_bg\"]",
-              "snapshotUrls":"https://i.gkd.li/snapshot/1712835336191"
-            }
-          ],
-          "enable":true
-        },
-        {
-          "key": 6,
-          "name":"点赞弹窗",
-          "desc":"触发拒绝操作",
-          "rules":[
-            {
-              "activityIds":"com.umetrip.android.msky.homepage.activity.UmeHomeActivity",
-              "matches":"[id=\"android:id/content\"] >n [vid=\"tv_reject\"]",
-              "snapshotUrls":"https://i.gkd.li/snapshot/1712917607209"
-            }
-          ],
-          "enable":true
-        }
-      ]
-    },
     {
       "id": "com.android.systemui",
       "name": "系统界面",
@@ -611,7 +540,7 @@
           "rules":[
             {
               "activityIds":[],
-              "matches":"[text=\"通知授权\"] <<n [id=\"android:id/content\"] >n [text=\"允许\"]",
+              "matches":"[text*=\"通知授权\"] <<n [id=\"android:id/content\"] >n [text=\"允许\"]",
               "snapshotUrls":"https://i.gkd.li/snapshot/1713347885974"
             }
           ],
@@ -640,6 +569,13 @@
               "desc":"允许存储授权操作",
               "matches":"[text*=\"存储权限\"] <<n [vid=\"grant_dialog\"] >n [vid=\"permission_allow_button\"]",
               "snapshotUrls":"https://i.gkd.li/snapshot/1713346978690"
+            },
+            {
+              "key": 2,
+              "activityIds":[],
+              "desc": "权限请求",
+              "matches": "[text=\"权限请求\"] <<n [id=\"android:id/content\"] >n [text=\"仅使用时允许\"]",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1724899501568"
             }
           ],
           "enable":true
@@ -710,6 +646,7 @@
     }
   ],
   "categories": [
+
     {
       "key": 0,
       "name": "开屏广告 ",
@@ -771,20 +708,14 @@
       "enable":true
     },
     {
-      "key": 11,
-      "name": "退出搜索页面",
-      "enable":true
-    },
-    {
       "key": 12,
-      "name": "tab页切换",
+      "name": "首页运行自动化流程",
       "enable":true
     },
     {
       "key": 13,
-      "name": "用户账号输入",
+      "name": "导航页面",
       "enable":true
     }
   ]
 }
-

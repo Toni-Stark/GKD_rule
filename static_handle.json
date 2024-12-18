@@ -1,10 +1,10 @@
 {
-  "id": 101,
+  "id": 105,
   "name": "内部订阅——统一维护",
-  "version": 307,
+  "version": 19,
   "author": "gkd",
-  "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
-  "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static.json",
+  "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static_wx_company.json",
+  "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/static_wx_company.json",
   "globalGroups": [
     {
       "name": "开屏广告",
@@ -444,162 +444,27 @@
       ]
     },
     {
-      "name": "tab页面",
+      "name": "判断是否首页",
       "key": 12,
       "matchTime": 10000,
       "actionMaximum": 1,
       "resetMatch": "app",
       "actionCdKey": 10000,
       "actionMaximumKey": 1,
-      "order": 1,
       "rules": [
         {
           "key": 1,
           "quickFind": true,
           "actionMaximum": 1,
-          "action": "clickPosition",
+          "action": "clickCenter",
           "matches": [
-            "[childCount<=5&&childCount>=2&&top>=1900&&left=0&&width>1000&&height>100&&bottom<2280]"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "首屏列表滚动",
-      "key": 10,
-      "resetMatch": "activity",
-      "actionCdKey": 0,
-      "matchDelay": 1000,
-      "rules": [
-        {
-          "key": 0,
-          "actionCd": 2000,
-          "order": 0,
-          "action": "handleUp",
-          "matches": [
-            "[id=\"android:id/content\"] >n ScrollView[width>1000&&height>1800]"
-          ]
-        },
-        {
-          "key": 1,
-          "actionCd": 2000,
-          "order": 1,
-          "action": "handleUp",
-          "matches": [
-            "[width>1000] > @RecyclerView"
-          ]
-        },
-        {
-          "key": 2,
-          "actionCd": 2000,
-          "order": 2,
-          "action": "handleUp",
-          "matches": [
-            "ViewPager[width>1000][height>1500] > RelativeLayout -2 RelativeLayout +1 RelativeLayout >n RecyclerView[height>1800]"
-          ]
-        },
-        {
-          "key": 3,
-          "actionCd": 2000,
-          "order": 3,
-          "action": "handleUp",
-          "matches": [
-            "@ViewPager[width>1000][height>1800]"
-          ]
-        },
-        {
-          "key": 4,
-          "actionCd": 2000,
-          "order": 4,
-          "action": "handleUp",
-          "matches": [
-            "ViewGroup[width>1000] > @RecyclerView[height>1800]"
-          ]
-        },
-        {
-          "key": 5,
-          "actionCd": 2000,
-          "order": 5,
-          "action": "handleUp",
-          "matches": [
-            "ViewPager[width>1000][height>1500] >n ViewGroup >n @RelativeLayout[height>1800]"
-          ]
-        },
-        {
-          "key": 6,
-          "actionCd": 2000,
-          "order": 6,
-          "action": "handleUp",
-          "matches": [
-            "[id=\"android:id/content\"] >n ListView[height>1800]"
-          ]
-        },
-        {
-          "key": 7,
-          "actionCd": 2000,
-          "order": 7,
-          "action": "handleUp",
-          "matches": [
-            "[childCount<=5&&childCount>=2&&top>=1900&&left=0&&width>1000&&height>100] - [left=0&&width>1000&&height>1800]"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "登录账号",
-      "key": 13,
-      "matchTime": 10000,
-      "actionMaximum": 1,
-      "resetMatch": "activity",
-      "actionCdKey": 10000,
-      "actionMaximumKey": 1,
-      "order": 1,
-      "rules": [
-        {
-          "key": 1,
-          "quickFind": true,
-          "actionMaximum": 1,
-          "action": "inputUserName",
-          "matches": [
-            "[text*=\"登录\"] <<n [id=\"android:id/content\"] >n [text=\"手机号\"&&id*=\"phone\"&&focusable=true]"
+            "[id*=\"content\"]"
           ]
         }
       ]
     }
   ],
   "apps": [
-    {
-      "id": "com.umetrip.android.msky.app",
-      "name": "航旅纵横",
-      "groups":[
-        {
-          "key": 0,
-          "name":"初始导航页",
-          "desc":"触发导航点击操作",
-          "rules":[
-            {
-              "activityIds":"com.umetrip.android.msky.app.module.startup.GuidePrivacyDeclarationActivity",
-              "matches":"[id=\"android:id/content\"] >n [vid=\"iv_bg\"]",
-              "snapshotUrls":"https://i.gkd.li/snapshot/1712835336191"
-            }
-          ],
-          "enable":true
-        },
-        {
-          "key": 6,
-          "name":"点赞弹窗",
-          "desc":"触发拒绝操作",
-          "rules":[
-            {
-              "activityIds":"com.umetrip.android.msky.homepage.activity.UmeHomeActivity",
-              "matches":"[id=\"android:id/content\"] >n [vid=\"tv_reject\"]",
-              "snapshotUrls":"https://i.gkd.li/snapshot/1712917607209"
-            }
-          ],
-          "enable":true
-        }
-      ]
-    },
     {
       "id": "com.android.systemui",
       "name": "系统界面",
@@ -667,44 +532,6 @@
       ]
     },
     {
-      "id": "com.cctv.yangshipin.app.androidp",
-      "name": "央视频",
-      "groups":[
-        {
-          "key": 0,
-          "name":"初始导航页",
-          "desc":"触发导航点击操作",
-          "rules":[
-            {
-              "activityIds":"com.tencent.videolite.android.ui.GuidePageActivity",
-              "matches":"[vid=\"btn_start\"]",
-              "snapshotUrls":"https://i.gkd.li/snapshot/1713433503485"
-            }
-          ],
-          "enable":true
-        }
-      ]
-    },
-    {
-      "id": "com.vivo.hybrid",
-      "name": "快应用框架服务",
-      "groups":[
-        {
-          "key": 9,
-          "name":"订阅消息权限",
-          "desc":"触发不允许本次操作",
-          "rules":[
-            {
-              "activityIds":[],
-              "matches":"[text*=\"订阅消息\"] <n LinearLayout + [vid*=\"close\"]",
-              "snapshotUrls":"https://i.gkd.li/snapshot/1718619996655"
-            }
-          ],
-          "enable":true
-        }
-      ]
-    },
-    {
       "id": "li.songe.gkd.debug",
       "enable":false
     }
@@ -712,17 +539,17 @@
   "categories": [
     {
       "key": 0,
-      "name": "开屏广告 ",
+      "name": "开屏广告",
       "enable":true
     },
     {
       "key": 1,
-      "name": "青少年模式 ",
+      "name": "青少年模式",
       "enable":true
     },
     {
       "key": 2,
-      "name": "更新提示 ",
+      "name": "更新提示",
       "enable":true
     },
     {
@@ -777,14 +604,8 @@
     },
     {
       "key": 12,
-      "name": "tab页切换",
-      "enable":true
-    },
-    {
-      "key": 13,
-      "name": "用户账号输入",
+      "name": "首页运行自动化流程",
       "enable":true
     }
   ]
 }
-
