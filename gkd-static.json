@@ -1,7 +1,7 @@
 {
   "id": 106,
   "name": "自动化订阅——统一维护",
-  "version": 97,
+  "version": 198,
   "author": "gkd",
   "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/gkd-static.json",
   "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/gkd-static.json",
@@ -42,9 +42,10 @@
         {
           "quickFind": true,
           "actionCd": 2000,
+          "action": "clickCenter",
           "key": 4,
           "matches": [
-            "[vid=\"splash_container\"] >n View[width>100&&width<120&&height>100&&height<120&&childCount<1&&clickable=true&&left>900&&top<170]"
+            "[vid=\"splash_container\"] >n View[width>100&&width<=120&&height>100&&height<=120&&childCount<1&&clickable=true&&left>900&&top<170]"
           ]
         },
         {
@@ -70,8 +71,66 @@
           "matches": [
             "ImageView[childCount=0&&clickable=true&&width>990&&height>2000&&left=0&&top=0]"
           ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 8,
+          "matches": [
+            "Button[vid=\"go_to\"&&clickable=true]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 9,
+          "matches": [
+            "ImageView[index>=1] -1 ViewPager +1 ImageView[vid=\"img_ok\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 10,
+          "matches": [
+            "[vid*=\"splash\"] >n View[width=120&&height=120&&left>=800&&bottom<=500]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 11,
+          "matches": [
+            "ImageView[index>=1] <3 ViewPager +1 Button[vid*=\"submit\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 12,
+          "action": "clickCenter",
+          "matches": [
+            "text*=\"获得奖励\"] <<n [id*=\"id/content\"] >n View[width>100&&width<=120&&height>100&&height<=120&&childCount<1&&clickable=true&&left>900&&top<170]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 13,
+          "action": "clickCenter",
+          "matches": [
+            "ViewPager >n Button[id*=\"id/btn_start\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 14,
+          "action": "clickCenter",
+          "matches": [
+            "[text=\"下一步\"] <<n FrameLayout >n [vid=\"ivClose\"]"
+          ]
         }
-
       ]
     },
     {
@@ -129,52 +188,14 @@
           "matches": [
             "[text*=\"读写设备\"] <<n [id=\"android:id/content\"] >n [text*=\"允许\"]"
           ]
-        }
-      ]
-    },
-    {
-      "name": "隐私用户协议弹窗",
-      "key": 9,
-      "matchTime": 15000,
-      "actionMaximum": 1,
-      "resetMatch": "activity",
-      "rules": [
-        {
-          "key": 2,
-          "actionCd": 2000,
-          "matches": [
-            "[text*=\"已阅读并\" || desc*=\"已阅读并\"] - [width<60&&height<60]"
-          ]
         },
         {
-          "key": 5,
-          "actionCd": 2000,
+          "quickFind": true,
+          "key": 7,
+          "desc": "权限申请",
+          "action": "clickCenter",
           "matches": [
-            "[text*=\"表示同意\" || desc*=\"表示同意\"] - [width<70&&height<70]"
-          ]
-        },
-        {
-          "key": 10,
-          "order": 10,
-          "actionCd": 2000,
-          "matches": [
-            "[text*=\"隐私\" || desc*=\"隐私\"] <<n FrameLayout >n [text=\"同意\"||text=\"同意并继续\"||text=\"同意并登录\"||text=\"同意并接受\"||desc=\"同意\"||desc=\"同意并继续\"||desc=\"同意并登录\"||desc=\"同意并接受\"||desc=\"阅读并同意\"||text=\"阅读并同意\"]"
-          ]
-        },
-        {
-          "key": 12,
-          "order": 12,
-          "actionCd": 2000,
-          "matches": [
-            "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n [text=\"同意\"||text=\"同意并继续\"||text=\"同意并登录\" || text=\"已阅读并同意\"||desc=\"同意\"||desc=\"同意并继续\"||desc=\"同意并登录\" || desc=\"已阅读并同意\"]"
-          ]
-        },
-        {
-          "key":22,
-          "order": 6,
-          "actionCd": 2000,
-          "matches": [
-            "@CheckBox[text=\"我已阅读并同意上述条款\" && clickable=true]"
+            "[text=\"权限申请\"] <<n FrameLayout >n Button[text=\"去授权\"]"
           ]
         }
       ]
@@ -406,7 +427,7 @@
           "actionCd": 1000,
           "desc": "弹窗广告",
           "matches": [
-            "[id*=\"_close\"]"
+            "@[vid*=\"_close\"&&(text!=\"不同意并退出\"&&text!=\"不同意\")] <1 LinearLayout +2 [!(text*=\"隐私\")]"
           ]
         },
         {
@@ -453,6 +474,52 @@
           "matches": [
             "[text*=\"跳过选择\"] <<n [id=\"android:id/content\"] >n [text*=\"确认\"]"
           ]
+        },
+        {
+          "quickFind": true,
+          "key": 30,
+          "actionCd": 1000,
+          "action": "clickCenter",
+          "desc": "特殊广告弹窗",
+          "matches": [
+            "[vid=\"channel\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "action": "clickCenter",
+          "key": 31,
+          "matches": [
+            "[vid*=\"splash\"] >n View[width=120&&height=120&&left>=800&&bottom<=500]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 4000,
+          "key": 32,
+          "action": "clickCenter",
+          "matches": [
+            "TextView[text=\"开始使用\"&&clickable=true]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 6000,
+          "key": 33,
+          "action": "clickCenter",
+          "matches": [
+            "Button[text=\"知道了\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 6000,
+          "key": 34,
+          "action": "clickCenter",
+          "matches": [
+            "RelativeLayout[top>300] > [vid=\"iv_back\"&&width=75&&height=75]"
+          ]
         }
       ]
     },
@@ -471,6 +538,13 @@
           "key": 0,
           "matches": [
             "[text*=\"青少年\"] <<n [id=\"android:id/content\"] >n [text^=\"我知道了\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 1,
+          "matches": [
+            "[text=\"青少年守护\"] <<n FrameLayout >n [text=\"已满14岁\"&&clickable=true]"
           ]
         }
       ]
@@ -519,6 +593,20 @@
           "matches": [
             "[text*=\"升级\"] <n LinearLayout > [text*=\"下次\"]"
           ]
+        },
+        {
+          "quickFind": true,
+          "key": 1,
+          "matches": [
+            "[text*=\"发现新版本\"] <<n FrameLayout >n Button[text=\"暂不升级\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 2,
+          "matches": [
+            "[desc*=\"立即更新\"] <<n FrameLayout >n Button[desc=\"暫不更新\"]"
+          ]
         }
       ]
     },
@@ -540,7 +628,7 @@
           "key": 2,
           "action": "onePathClickTab",
           "matches": [
-            "[bottom>=2100&&left<20&&right>1040&&top>2100&&height>120&&childCount>1]"
+            "[bottom>=2100&&left<20&&right>1040&&top>2000&&height>120&&childCount>1]"
           ]
         }
       ]
@@ -558,6 +646,322 @@
           "actionCd": 2000,
           "matches": [
             "ViewPager[childCount>=2]"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "隐私用户协议确认框",
+      "key": 24,
+      "actionMaximum": 1,
+      "actionMaximumKey": 1,
+      "resetMatch": "app",
+      "rules": [
+        {
+          "key": 1,
+          "matches": [
+            "[text*=\"已阅读并\" || desc*=\"已阅读并\"] - [width<60&&height<60]"
+          ]
+        },
+        {
+          "key": 2,
+          "matches": [
+            "[text*=\"表示同意\" || desc*=\"表示同意\"] - [width<70&&height<70]"
+          ]
+        },
+        {
+          "key": 3,
+          "matches": [
+            "@ImageView +1 [text=\"我同意\"]"
+          ]
+        },
+        {
+          "key":4,
+          "matches": [
+            "@CheckBox[text=\"我已阅读并同意上述条款\" && clickable=true]"
+          ]
+        },
+        {
+          "key":5,
+          "matches": [
+            "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n [text*=\"已阅读并同意\"] <n ViewGroup -n CheckBox"
+          ]
+        },
+        {
+          "key": 6,
+          "matches": [
+            "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n [(text*=\"已阅读并同意\"&&clickable=true)]"
+          ]
+        },
+        {
+          "key":7,
+          "matches": [
+            "@CheckBox[text=\"阅读并同意\"&&clickable=true]"
+          ]
+        },
+        {
+          "key":8,
+          "matches": [
+            "TextView[text=\"我已经阅读并接受\"] -1 @View[clickable=true&&width=height]"
+          ]
+        },
+        {
+          "key":9,
+          "matches": [
+            "TextView[text*=\"即代表同意\"] -1 ImageView[clickable=true]"
+          ]
+        },
+        {
+          "key":10,
+          "matches": [
+            "[text=\"已阅读并同意\"] <<n View[childCount=2] >n Image[width=height]"
+          ]
+        },
+        {
+          "key":11,
+          "matches": [
+            "[text*=\"已阅读并同意\"] -1 ImageView[width=height]"
+          ]
+        },
+        {
+          "key":12,
+          "matches": [
+            "TextView[text*=\"已阅读并同意\" || text*=\"我已经阅读并接受\"] -1 CheckBox"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "隐私用户协议弹窗",
+      "key": 25,
+      "actionMaximum": 1,
+      "resetMatch": "app",
+      "rules": [
+        {
+          "key": 1,
+          "order": 1,
+          "actionCd": 2000,
+          "action": "clickCenter",
+          "matches": [
+            "[text*=\"隐私\" || desc*=\"隐私\"] <<n FrameLayout >n [desc=\"同意(agree)\"||text=\"同意\"||text=\"同意并开始使用\"||text=\"同意并继续\"||text=\"同意并登录\"||text=\"已阅读并同意\"||desc=\"同意\"||desc=\"同意并继续\"||desc=\"同意并登录\"||(desc*=\"已阅读并同意\"&&clickable=true)||((text*=\"同意并进入\"||desc*=\"同意并进入\"||text=\"同意并继续使用\")&&clickable=true)]"
+          ]
+        },
+        {
+          "key": 2,
+          "order": 2,
+          "actionCd": 3000,
+          "matches": [
+            "[text*=\"用户协议\" ||text*=\"隐私\" || desc*=\"隐私\"|| text*=\"agreement\"] <<n FrameLayout >n [(vid*=\"_agree\"&&clickable=true&&!(text*=\"不同意\")||text=\"同意接受\"||desc=\"同意接受\"||text=\"确认\"||text=\"确定\"||text=\"同意继续\"||text=\"go\"||text=\"我同意\"||desc=\"我同意\"||text=\"同意\"||text=\"同  意\"||text=\"同意并继续\"||text=\"同意并登录\"||text=\"同意并接受\"||desc=\"同意\"||desc=\"同意并继续\"||desc=\"同意并登录\"||desc=\"同意并接受\"||desc=\"阅读并同意\"||text=\"阅读并同意\")&&!(text*=\"用户\"||text*=\"隐私\")]"
+          ]
+        },
+        {
+          "key": 3,
+          "order": 3,
+          "actionCd": 2000,
+          "matches": [
+            "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n [vid=\"yes\" || vid=\"tvConfirm\"]"
+          ]
+        },
+        {
+          "key":4,
+          "order": 4,
+          "actionCd": 2000,
+          "matches": [
+            "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n ImageButton[vid=\"positive\"]"
+          ]
+        },
+        {
+          "key":5,
+          "order": 5,
+          "actionCd": 2000,
+          "matches": [
+            "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n LinearLayout[childCount=2] > ImageView[index=1]"
+          ]
+        },
+        {
+          "key":6,
+          "order": 6,
+          "actionCd": 2000,
+          "matches": [
+            "[desc*=\"服务协议\"] <<n View[childCount>=3] +1 ImageView[clickable=true]"
+          ]
+        },
+        {
+          "key":7,
+          "order": 7,
+          "actionCd": 2000,
+          "matches": [
+            "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n TextView[text*=\"不同意\"] - ImageView"
+          ]
+        },
+        {
+          "key":8,
+          "order": 8,
+          "actionCd": 2000,
+          "matches": [
+            "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n Button[text*=\"不同意\"] -1 Button[text*=\"同意\"]"
+          ]
+        },
+        {
+          "key":9,
+          "order": 9,
+          "actionCd": 2000,
+          "matches": [
+            "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n ImageButton[vid=\"agree\"]"
+          ]
+        },
+        {
+          "key":10,
+          "order": 10,
+          "actionCd": 2000,
+          "matches": [
+            "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n [desc*=\"不同意\" && desc.length<=7] -1 [desc*=\"同意\" && desc.length<=5]"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "用户名/手机号",
+      "key": 30,
+      "resetMatch": "activity",
+      "actionMaximum": 1,
+      "actionCd": 4000,
+      "rules": [
+        {
+          "key": 1,
+          "action": "inputUserNameMutex",
+          "actionCd": 4000,
+          "matches": [
+            "EditText[text*=\"手机号\"&&vid*=\"ogin\"]"
+          ]
+        },
+        {
+          "key": 2,
+          "action": "inputUserNameMutex",
+          "actionCd": 4000,
+          "matches": [
+            "TextView[text=\"手机号\"] +1 EditText"
+          ]
+        },
+        {
+          "key": 3,
+          "action": "inputUserNameMutex",
+          "actionCd": 4000,
+          "matches": [
+            "EditText[text=\"请输入手机号\"]"
+          ]
+        },
+        {
+          "key": 4,
+          "action": "inputUserNameMutex",
+          "actionCd": 4000,
+          "matches": [
+            "[text=\"请输入手机号\"] +1 EditText"
+          ]
+        },
+        {
+          "key": 5,
+          "action": "inputUserNameMutex",
+          "actionCd": 4000,
+          "matches": [
+            "EditText[vid*=\"user_phone\"]"
+          ]
+        },
+        {
+          "key": 6,
+          "action": "inputUserNameMutex",
+          "actionCd": 4000,
+          "matches": [
+            "EditText[text*=\"输入你的手机号码\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "密码/密码本",
+      "key": 35,
+      "resetMatch": "activity",
+      "actionMaximum": 1,
+      "actionCd": 4000,
+      "rules": [
+        {
+          "key": 1,
+          "action": "inputPassWordMutex",
+          "actionCd": 4000,
+          "matches": [
+            "EditText[text*=\"密码\"]"
+          ]
+        },
+        {
+          "key": 2,
+          "action": "inputPassWordMutex",
+          "actionCd": 4000,
+          "matches": [
+            "EditText[text=\"请输入密码\"]"
+          ]
+        },
+        {
+          "key": 3,
+          "action": "inputPassWordMutex",
+          "actionCd": 4000,
+          "matches": [
+            "[text*=\"请输入密码\"] +1 EditText"
+          ]
+        },
+        {
+          "key": 4,
+          "action": "inputPassWordMutex",
+          "actionCd": 4000,
+          "matches": [
+            "EditText[vid*=\"login_pwd\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "验证码",
+      "key": 36,
+      "resetMatch": "activity",
+      "actionMaximum": 1,
+      "actionCd": 4000,
+      "rules": [
+        {
+          "key": 2,
+          "action": "inputCodeMutex",
+          "actionCd": 4000,
+          "matches": [
+            "TextView[text=\"发送验证码\"] -1 EditText"
+          ]
+        },
+        {
+          "key": 3,
+          "action": "inputCodeMutex",
+          "actionCd": 4000,
+          "matches": [
+            "EditText[text=\"验证码\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "登录进入应用",
+      "key": 50,
+      "resetMatch": "activity",
+      "actionMaximum": 2,
+      "actionCd": 4000,
+      "rules": [
+        {
+          "key": 1,
+          "action": "loginBind",
+          "matches": [
+            "Button[text=\"登  录\"||text=\"登录\"||text=\"登 录\"]"
+          ]
+        },
+        {
+          "key": 2,
+          "action": "loginBind",
+          "matches": [
+            "TextView[text=\"登录\"||text=\"立即登录\"||text=\"登 录\"]"
           ]
         }
       ]
@@ -681,7 +1085,6 @@
     }
   ],
   "categories": [
-
     {
       "key": 0,
       "name": "开屏广告 ",
@@ -750,6 +1153,36 @@
     {
       "key": 13,
       "name": "导航页面",
+      "enable":true
+    },
+    {
+      "key": 24,
+      "name": "隐私确认框",
+      "enable":true
+    },
+    {
+      "key": 25,
+      "name": "隐私用户协议",
+      "enable":true
+    },
+    {
+      "key": 30,
+      "name": "用户名/手机号",
+      "enable":true
+    },
+    {
+      "key": 35,
+      "name": "密码/密码本",
+      "enable":true
+    },
+    {
+      "key": 36,
+      "name": "验证码",
+      "enable":true
+    },
+    {
+      "key": 50,
+      "name": "登录按钮",
       "enable":true
     }
   ]
