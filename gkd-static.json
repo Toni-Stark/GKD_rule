@@ -1,7 +1,7 @@
 {
   "id": 106,
   "name": "自动化订阅——统一维护",
-  "version": 198,
+  "version": 245,
   "author": "gkd",
   "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/gkd-static.json",
   "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/gkd-static.json",
@@ -18,7 +18,7 @@
           "actionCd": 2000,
           "key": 0,
           "matches": [
-            "[text*=\"跳过\" || desc*=\"跳过\"][text.length<10 || desc.length<10][visibleToUser=true]"
+            "[(text*=\"跳过\" || desc*=\"跳过\")&&(text.length<10 || desc.length<10)&&visibleToUser=true]"
           ]
         },
         {
@@ -27,7 +27,7 @@
           "key": 1,
           "desc": "穿山甲广告特殊标识符",
           "matches": [
-            "[id*=\":id/tt_splash_view\"] >n  [id*=\":id/tt_splash_skip_btn\"]"
+            "[id*=\":id/tt_splash_view\"] >n [id*=\":id/tt_splash_skip_btn\"]"
           ]
         },
         {
@@ -108,16 +108,14 @@
           "quickFind": true,
           "actionCd": 2000,
           "key": 12,
-          "action": "clickCenter",
           "matches": [
-            "text*=\"获得奖励\"] <<n [id*=\"id/content\"] >n View[width>100&&width<=120&&height>100&&height<=120&&childCount<1&&clickable=true&&left>900&&top<170]"
+            "[text*=\"获得奖励\"] <<n [id*=\"id/content\"] >n View[width>100&&width<=120&&height>100&&height<=120&&childCount<1&&clickable=true&&left>900&&top<170]"
           ]
         },
         {
           "quickFind": true,
           "actionCd": 2000,
           "key": 13,
-          "action": "clickCenter",
           "matches": [
             "ViewPager >n Button[id*=\"id/btn_start\"]"
           ]
@@ -126,9 +124,24 @@
           "quickFind": true,
           "actionCd": 2000,
           "key": 14,
-          "action": "clickCenter",
           "matches": [
             "[text=\"下一步\"] <<n FrameLayout >n [vid=\"ivClose\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 15,
+          "matches": [
+            "ViewPager <<n [id*=\"id/content\"] >n [text=\"立即体验\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 16,
+          "matches": [
+            "[text*=\"全新体验\"&&clickable=true]"
           ]
         }
       ]
@@ -197,6 +210,24 @@
           "matches": [
             "[text=\"权限申请\"] <<n FrameLayout >n Button[text=\"去授权\"]"
           ]
+        },
+        {
+          "quickFind": true,
+          "key": 8,
+          "desc": "权限申请",
+          "action": "clickCenter",
+          "matches": [
+            "[text*=\"推送消息通知\"] +n [(desc=\"确定\"||text=\"确定\")&&clickable=true]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 9,
+          "desc": "权限申请",
+          "action": "clickCenter",
+          "matches": [
+            "[text=\"文件存储和访问\"] <<n [id*=\"id/content\"] >n [text=\"知道了\"]"
+          ]
         }
       ]
     },
@@ -206,7 +237,6 @@
       "matchTime": 50000,
       "actionMaximum": 30,
       "resetMatch": "activity",
-      "order": 1,
       "rules": [
         {
           "quickFind": true,
@@ -520,6 +550,40 @@
           "matches": [
             "RelativeLayout[top>300] > [vid=\"iv_back\"&&width=75&&height=75]"
           ]
+        },
+        {
+          "quickFind": true,
+          "key": 35,
+          "actionCd": 3000,
+          "matches": [
+            "[vid=\"close_btn\"&&width=120&&height=120]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 36,
+          "matches": [
+            "[text=\"手机号登录\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 37,
+          "action": "clickCenter",
+          "matches": [
+            "[desc*=\"跳过\" && clickable=true]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 38,
+          "action": "clickCenter",
+          "matches": [
+            "[text*=\"随便看看\"]"
+          ]
         }
       ]
     },
@@ -544,7 +608,7 @@
           "quickFind": true,
           "key": 1,
           "matches": [
-            "[text=\"青少年守护\"] <<n FrameLayout >n [text=\"已满14岁\"&&clickable=true]"
+            "[text=\"青少年守护\"] <<n FrameLayout >n [(text*=\"已满14\")&&clickable=true]"
           ]
         }
       ]
@@ -728,6 +792,24 @@
           "matches": [
             "TextView[text*=\"已阅读并同意\" || text*=\"我已经阅读并接受\"] -1 CheckBox"
           ]
+        },
+        {
+          "key":13,
+          "matches": [
+            "[text=\"登录即代表你同意\" || text*=\"即代表您已阅读并同意\"] -1 CheckBox"
+          ]
+        },
+        {
+          "key":14,
+          "matches": [
+            "[text*=\"知悉并同意个人信息\"] -1 ImageView[clickable=true]"
+          ]
+        },
+        {
+          "key":15,
+          "matches": [
+            "[text*=\"我已经阅读\"||text*=\"我已详细阅读\"] -1 CheckBox"
+          ]
         }
       ]
     },
@@ -743,7 +825,7 @@
           "actionCd": 2000,
           "action": "clickCenter",
           "matches": [
-            "[text*=\"隐私\" || desc*=\"隐私\"] <<n FrameLayout >n [desc=\"同意(agree)\"||text=\"同意\"||text=\"同意并开始使用\"||text=\"同意并继续\"||text=\"同意并登录\"||text=\"已阅读并同意\"||desc=\"同意\"||desc=\"同意并继续\"||desc=\"同意并登录\"||(desc*=\"已阅读并同意\"&&clickable=true)||((text*=\"同意并进入\"||desc*=\"同意并进入\"||text=\"同意并继续使用\")&&clickable=true)]"
+            "[text*=\"个人信息\" || text*=\"隐私\" || desc*=\"隐私\"] <<n FrameLayout >n [text=\"同意并使用\"||text=\"同意并开始\"||desc=\"同意(agree)\"||text=\"同意\"||text=\"同意并开始使用\"||text=\"同意并继续\"||text=\"同意并登录\"||text=\"已阅读并同意\"||desc=\"同意\"||desc=\"同意并继续\"||desc=\"同意并登录\"||(desc*=\"已阅读并同意\"&&clickable=true)||((text*=\"同意并进入\"||desc*=\"同意并进入\"||text=\"同意并继续使用\"||text=\"同意并开始使用\")&&clickable=true)]"
           ]
         },
         {
@@ -751,7 +833,7 @@
           "order": 2,
           "actionCd": 3000,
           "matches": [
-            "[text*=\"用户协议\" ||text*=\"隐私\" || desc*=\"隐私\"|| text*=\"agreement\"] <<n FrameLayout >n [(vid*=\"_agree\"&&clickable=true&&!(text*=\"不同意\")||text=\"同意接受\"||desc=\"同意接受\"||text=\"确认\"||text=\"确定\"||text=\"同意继续\"||text=\"go\"||text=\"我同意\"||desc=\"我同意\"||text=\"同意\"||text=\"同  意\"||text=\"同意并继续\"||text=\"同意并登录\"||text=\"同意并接受\"||desc=\"同意\"||desc=\"同意并继续\"||desc=\"同意并登录\"||desc=\"同意并接受\"||desc=\"阅读并同意\"||text=\"阅读并同意\")&&!(text*=\"用户\"||text*=\"隐私\")]"
+            "[text*=\"用户协议\" ||text*=\"隐私\" || desc*=\"隐私\"|| text*=\"agreement\"] <<n FrameLayout >n [(vid*=\"_agree\"&&!(vid*=\"agreement_title\")&&clickable=true&&!(text*=\"不同意\")||text=\"同意接受\"||desc=\"同意接受\"||text=\"确认\"||text=\"确定\"||text=\"同意继续\"||text=\"go\"||text=\"我同意\"||desc=\"我同意\"||text=\"同意\"||text=\"同  意\"||text=\"同意并继续\"||text=\"同意并登录\"||text=\"同意并接受\"||desc=\"同意\"||desc=\"同意并继续\"||desc=\"同意并登录\"||desc=\"同意并接受\"||desc=\"阅读并同意\"||text=\"阅读并同意\")&&!(text*=\"用户\"||text*=\"隐私\")]"
           ]
         },
         {
@@ -872,7 +954,15 @@
           "action": "inputUserNameMutex",
           "actionCd": 4000,
           "matches": [
-            "EditText[text*=\"输入你的手机号码\"]"
+            "EditText[text*=\"手机号码\"]"
+          ]
+        },
+        {
+          "key": 7,
+          "action": "inputUserNameMutex",
+          "actionCd": 4000,
+          "matches": [
+            "[text=\"请输入手机号\"] +1 EditText"
           ]
         }
       ]
@@ -940,6 +1030,30 @@
           "matches": [
             "EditText[text=\"验证码\"]"
           ]
+        },
+        {
+          "key": 4,
+          "action": "inputCodeMutex",
+          "actionCd": 4000,
+          "matches": [
+            "EditText[text*=\"图片验证码\"]"
+          ]
+        },
+        {
+          "key": 5,
+          "action": "inputCodeMutex",
+          "actionCd": 4000,
+          "matches": [
+            "EditText[text*=\"输入验证码\"]"
+          ]
+        },
+        {
+          "key": 6,
+          "action": "inputCodeMutex",
+          "actionCd": 4000,
+          "matches": [
+            "[text=\"请输入验证码\"] +1 EditText"
+          ]
         }
       ]
     },
@@ -962,6 +1076,27 @@
           "action": "loginBind",
           "matches": [
             "TextView[text=\"登录\"||text=\"立即登录\"||text=\"登 录\"]"
+          ]
+        },
+        {
+          "key": 3,
+          "action": "loginBind",
+          "matches": [
+            "[text*=\"登录\"] <<n FrameLayout >n [text*=\"进入\"]"
+          ]
+        },
+        {
+          "key": 4,
+          "action": "loginBind",
+          "matches": [
+            "TextView[text=\"获取验证码\"&&clickable=true]"
+          ]
+        },
+        {
+          "key": 5,
+          "action": "loginBind",
+          "matches": [
+            "Button[text=\"发送验证码\"&&clickable=true]"
           ]
         }
       ]
