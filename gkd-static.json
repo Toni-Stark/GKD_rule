@@ -1,7 +1,7 @@
 {
   "id": 106,
   "name": "自动化订阅——统一维护",
-  "version": 245,
+  "version": 260,
   "author": "gkd",
   "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/gkd-static.json",
   "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/gkd-static.json",
@@ -250,8 +250,9 @@
           "quickFind": true,
           "key": 1,
           "actionCd": 3000,
+          "action": "clickCenter",
           "matches": [
-            "[vid=\"iv_close\"]"
+            "[top>200&&vid=\"iv_close\"]"
           ]
         },
         {
@@ -760,7 +761,7 @@
         {
           "key":7,
           "matches": [
-            "@CheckBox[text=\"阅读并同意\"&&clickable=true]"
+              "@CheckBox[text=\"阅读并同意\"&&clickable=true]"
           ]
         },
         {
@@ -809,6 +810,19 @@
           "key":15,
           "matches": [
             "[text*=\"我已经阅读\"||text*=\"我已详细阅读\"] -1 CheckBox"
+          ]
+        },
+        {
+          "key": 16,
+          "matches": [
+            "[text*=\"已同意\"] -1 CheckBox"
+          ]
+        },
+        {
+          "key": 17,
+          "action": "clickBindStart",
+          "matches": [
+            "CheckBox[text*=\"我已阅读并同意\"]"
           ]
         }
       ]
@@ -954,7 +968,7 @@
           "action": "inputUserNameMutex",
           "actionCd": 4000,
           "matches": [
-            "EditText[text*=\"手机号码\"]"
+            "EditText[text*=\"手机号\"]"
           ]
         },
         {
@@ -963,6 +977,14 @@
           "actionCd": 4000,
           "matches": [
             "[text=\"请输入手机号\"] +1 EditText"
+          ]
+        },
+        {
+          "key": 8,
+          "action": "inputUserNameMutex",
+          "actionCd": 4000,
+          "matches": [
+            "EditText[id*=\"phone\"]"
           ]
         }
       ]
@@ -1054,6 +1076,14 @@
           "matches": [
             "[text=\"请输入验证码\"] +1 EditText"
           ]
+        },
+        {
+          "key": 7,
+          "action": "inputCodeMutex",
+          "actionCd": 4000,
+          "matches": [
+            "[text=\"获取验证码\"] -1 View >n EditText"
+          ]
         }
       ]
     },
@@ -1097,6 +1127,13 @@
           "action": "loginBind",
           "matches": [
             "Button[text=\"发送验证码\"&&clickable=true]"
+          ]
+        },
+        {
+          "key": 6,
+          "action": "loginBind",
+          "matches": [
+            "[text*=\"登录\"] <<n FrameLayout >n TextView[text=\"下一步\"&&clickable=true]"
           ]
         }
       ]
