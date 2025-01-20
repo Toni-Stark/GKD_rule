@@ -1135,6 +1135,13 @@
           "matches": [
             "[text*=\"登录\"] <<n FrameLayout >n TextView[text=\"下一步\"&&clickable=true]"
           ]
+        },
+        {
+          "key": 7,
+          "action": "loginBind",
+          "matches": [
+            "[text*=\"登录\"] <<n FrameLayout >n TextView[(text=\"下一步\"||text=\"注册登录\")&&clickable=true]"
+          ]
         }
       ]
     }
