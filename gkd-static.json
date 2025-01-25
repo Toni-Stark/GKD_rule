@@ -1,7 +1,7 @@
 {
   "id": 106,
   "name": "自动化订阅——统一维护",
-  "version": 260,
+  "version": 307,
   "author": "gkd",
   "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/gkd-static.json",
   "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/gkd-static.json",
@@ -18,7 +18,7 @@
           "actionCd": 2000,
           "key": 0,
           "matches": [
-            "[(text*=\"跳过\" || desc*=\"跳过\")&&(text.length<10 || desc.length<10)&&visibleToUser=true]"
+            "[(text*=\"tiaoguo\" ||text*=\"跳过\" || desc*=\"跳过\")&&(text.length<10 || desc.length<10)&&visibleToUser=true]"
           ]
         },
         {
@@ -93,7 +93,7 @@
           "actionCd": 2000,
           "key": 10,
           "matches": [
-            "[vid*=\"splash\"] >n View[width=120&&height=120&&left>=800&&bottom<=500]"
+            "[vid*=\"splash\" || vid*=\"layout\"] >n View[width=120&&height=120&&left>=800&&bottom<=500]"
           ]
         },
         {
@@ -142,6 +142,30 @@
           "key": 16,
           "matches": [
             "[text*=\"全新体验\"&&clickable=true]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 17,
+          "matches": [
+            "ViewPager +1 [text=\"立即进入\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 18,
+          "matches": [
+            "ViewPager >n [text=\"立 即 开 启\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 19,
+          "matches": [
+            "TextView[vid=\"quick_login_tv\"]"
           ]
         }
       ]
@@ -227,6 +251,15 @@
           "action": "clickCenter",
           "matches": [
             "[text=\"文件存储和访问\"] <<n [id*=\"id/content\"] >n [text=\"知道了\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 10,
+          "desc": "权限申请",
+          "action": "clickCenter",
+          "matches": [
+            "[text*=\"温馨提示\"] <<n [id*=\"id/content\"] >n Button[text=\"允许\"||text=\"确定\"||text=\"确认\"]"
           ]
         }
       ]
@@ -449,7 +482,7 @@
           "actionCd": 1000,
           "desc": "弹窗广告",
           "matches": [
-            "[id*=\"dialog_close\"]"
+            "[id*=\"dialog_close\"&&text!=\"未满14周岁\"]"
           ]
         },
         {
@@ -585,6 +618,24 @@
           "matches": [
             "[text*=\"随便看看\"]"
           ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 39,
+          "action": "clickCenter",
+          "matches": [
+            "[text=\"反馈\"] +1 [width>=80&&width<=100&&height>=80&&height<=100]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "actionCd": 2000,
+          "key": 40,
+          "action": "clickCenter",
+          "matches": [
+            "[text=\"反馈\"] -1 [width>=80&&width<=100&&height>=80&&height<=100]"
+          ]
         }
       ]
     },
@@ -712,6 +763,14 @@
           "matches": [
             "ViewPager[childCount>=2]"
           ]
+        },
+        {
+          "key": 2,
+          "action": "handleStart",
+          "actionCd": 2000,
+          "matches": [
+            "[vid=\"splash_banner\"] > ViewPager"
+          ]
         }
       ]
     },
@@ -755,13 +814,13 @@
         {
           "key": 6,
           "matches": [
-            "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n [(text*=\"已阅读并同意\"&&clickable=true)]"
+            "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n [(text*=\"已阅读并同意\"&&clickable=true&& !(text*=\"<img>\"))]"
           ]
         },
         {
           "key":7,
           "matches": [
-              "@CheckBox[text=\"阅读并同意\"&&clickable=true]"
+              "@CheckBox[(text=\"阅读并同意\" || text*=\"勾选代表同意\")&&clickable=true]"
           ]
         },
         {
@@ -824,94 +883,150 @@
           "matches": [
             "CheckBox[text*=\"我已阅读并同意\"]"
           ]
+        },
+        {
+          "key": 18,
+          "action": "clickCenter",
+          "matches": [
+            "[text*=\"查阅并同意\"] -1 ImageView[vid*=\"check\"]"
+          ]
+        },
+        {
+          "key": 19,
+          "action": "clickCenter",
+          "matches": [
+            "[text*=\"阅读\"] -1 CheckBox"
+          ]
+        },
+        {
+          "key": 20,
+          "matches": [
+            "[text*=\"查看\"] -1 [vid*=\"RadioButton\"&&clickable=true]"
+          ]
+        },
+        {
+          "key": 21,
+          "action": "clickStartTop",
+          "matches": [
+            "[text*=\"隐私\"] <<n FrameLayout >n  [text*=\"<img> 我已阅读并\"]"
+          ]
+        },
+        {
+          "key": 22,
+          "action": "clickCenter",
+          "matches": [
+            "[text*=\"我已阅读并同意\"] -1 [vid*=\"privacy\"] >1 ImageView[vid*=\"Agree\"]"
+          ]
+        },
+        {
+          "key": 23,
+          "action": "clickCenter",
+          "matches": [
+            "[text=\"《隐私政策》与《用户协议》\"] -1 ImageView"
+          ]
+        },
+        {
+          "key": 24,
+          "action": "clickCenter",
+          "matches": [
+            "[text*=\"同意\"] -1 ImageView[vid*=\"_check\"]"
+          ]
         }
       ]
     },
     {
       "name": "隐私用户协议弹窗",
       "key": 25,
-      "actionMaximum": 1,
+      "actionMaximum": 3,
       "resetMatch": "app",
+      "matchTime": 3000,
       "rules": [
         {
           "key": 1,
-          "order": 1,
-          "actionCd": 2000,
-          "action": "clickCenter",
+          "actionCd": 5000,
+          "action": "clickCenterAgree",
           "matches": [
-            "[text*=\"个人信息\" || text*=\"隐私\" || desc*=\"隐私\"] <<n FrameLayout >n [text=\"同意并使用\"||text=\"同意并开始\"||desc=\"同意(agree)\"||text=\"同意\"||text=\"同意并开始使用\"||text=\"同意并继续\"||text=\"同意并登录\"||text=\"已阅读并同意\"||desc=\"同意\"||desc=\"同意并继续\"||desc=\"同意并登录\"||(desc*=\"已阅读并同意\"&&clickable=true)||((text*=\"同意并进入\"||desc*=\"同意并进入\"||text=\"同意并继续使用\"||text=\"同意并开始使用\")&&clickable=true)]"
+            "[text*=\"个人信息\" || text*=\"隐私\" || desc*=\"隐私\"] <<n FrameLayout >n [text=\"同意协议\"||text=\"同意隐私政策\"||text=\"同意并使用\"||text=\"同意并开始\"||desc=\"同意(agree)\"||text=\"同意\"||text=\"同意并开始使用\"||text=\"同意并继续\"||text=\"同意并登录\"||text=\"已阅读并同意\"||desc=\"同意\"||desc=\"同意并继续\"||desc=\"同意并登录\"||(desc*=\"已阅读并同意\"&&clickable=true)||((text*=\"同意并进入\"||desc*=\"同意并进入\"||text=\"同意并继续使用\"||text=\"同意并开始使用\")&&clickable=true)]"
           ]
         },
         {
           "key": 2,
-          "order": 2,
-          "actionCd": 3000,
+          "actionCd": 5000,
+          "action": "clickCenterAgree",
           "matches": [
-            "[text*=\"用户协议\" ||text*=\"隐私\" || desc*=\"隐私\"|| text*=\"agreement\"] <<n FrameLayout >n [(vid*=\"_agree\"&&!(vid*=\"agreement_title\")&&clickable=true&&!(text*=\"不同意\")||text=\"同意接受\"||desc=\"同意接受\"||text=\"确认\"||text=\"确定\"||text=\"同意继续\"||text=\"go\"||text=\"我同意\"||desc=\"我同意\"||text=\"同意\"||text=\"同  意\"||text=\"同意并继续\"||text=\"同意并登录\"||text=\"同意并接受\"||desc=\"同意\"||desc=\"同意并继续\"||desc=\"同意并登录\"||desc=\"同意并接受\"||desc=\"阅读并同意\"||text=\"阅读并同意\")&&!(text*=\"用户\"||text*=\"隐私\")]"
+            "[text*=\"用户协议\" ||text*=\"隐私\" || desc*=\"隐私\"|| text*=\"agreement\"] <<n FrameLayout >n [(vid*=\"_agree\"&&!(vid*=\"agreement_title\")&&clickable=true&&!(text*=\"不同意\")||text=\"同意接受\"||desc=\"同意接受\"||text=\"确认\"||text=\"确定\"||text=\"我知道了\"||text=\"同意继续\"||text=\"go\"||text=\"我同意\"||desc=\"我同意\"||text=\"同意\"||text=\"同  意\"||text=\"同意并继续\"||text=\"同意并登录\"||text=\"同意并接受\"||desc=\"同意\"||desc=\"同意并继续\"||desc=\"同意并登录\"||desc=\"同意并接受\"||desc=\"阅读并同意\"||text=\"阅读并同意\")&&!(text*=\"用户\"||text*=\"隐私\")]"
           ]
         },
         {
           "key": 3,
-          "order": 3,
-          "actionCd": 2000,
+          "actionCd": 5000,
+          "action": "clickCenterAgree",
           "matches": [
             "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n [vid=\"yes\" || vid=\"tvConfirm\"]"
           ]
         },
         {
           "key":4,
-          "order": 4,
-          "actionCd": 2000,
+          "actionCd": 5000,
+          "action": "clickCenterAgree",
           "matches": [
             "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n ImageButton[vid=\"positive\"]"
           ]
         },
         {
           "key":5,
-          "order": 5,
-          "actionCd": 2000,
+          "actionCd": 5000,
+          "action": "clickCenterAgree",
           "matches": [
             "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n LinearLayout[childCount=2] > ImageView[index=1]"
           ]
         },
         {
           "key":6,
-          "order": 6,
-          "actionCd": 2000,
+          "actionCd": 5000,
+          "action": "clickCenterAgree",
           "matches": [
             "[desc*=\"服务协议\"] <<n View[childCount>=3] +1 ImageView[clickable=true]"
           ]
         },
         {
           "key":7,
-          "order": 7,
-          "actionCd": 2000,
+          "actionCd": 5000,
+          "action": "clickCenterAgree",
           "matches": [
             "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n TextView[text*=\"不同意\"] - ImageView"
           ]
         },
         {
           "key":8,
-          "order": 8,
-          "actionCd": 2000,
+          "actionCd": 5000,
+          "action": "clickCenterAgree",
           "matches": [
-            "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n Button[text*=\"不同意\"] -1 Button[text*=\"同意\"]"
+            "[text*=\"隐私\"||desc*=\"隐私\"||text*=\"产品改进计划\"] <<n FrameLayout >n Button[text*=\"不同意\"] -1 Button[text*=\"同意\"]"
           ]
         },
         {
           "key":9,
-          "order": 9,
-          "actionCd": 2000,
+          "actionCd": 5000,
+          "action": "clickCenterAgree",
           "matches": [
             "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n ImageButton[vid=\"agree\"]"
           ]
         },
         {
           "key":10,
-          "order": 10,
-          "actionCd": 2000,
+          "actionCd": 5000,
+          "action": "clickCenterAgree",
           "matches": [
             "[text*=\"隐私\"||desc*=\"隐私\"] <<n FrameLayout >n [desc*=\"不同意\" && desc.length<=7] -1 [desc*=\"同意\" && desc.length<=5]"
+          ]
+        },
+        {
+          "key":11,
+          "actionCd": 5000,
+          "action": "clickCenterAgree",
+          "matches": [
+            "[text*=\"为了更好的为您服务\"] <<n FrameLayout >n TextView[text=\"同意\"]"
           ]
         }
       ]
@@ -968,7 +1083,7 @@
           "action": "inputUserNameMutex",
           "actionCd": 4000,
           "matches": [
-            "EditText[text*=\"手机号\"]"
+            "EditText[text*=\"手机号\" || text*=\"请输入账号\"]"
           ]
         },
         {
@@ -1098,14 +1213,14 @@
           "key": 1,
           "action": "loginBind",
           "matches": [
-            "Button[text=\"登  录\"||text=\"登录\"||text=\"登 录\"]"
+            "Button[text=\"登  录\"||text=\"登录\"||text=\"登 录\"||text=\"Login\"]"
           ]
         },
         {
           "key": 2,
           "action": "loginBind",
           "matches": [
-            "TextView[text=\"登录\"||text=\"立即登录\"||text=\"登 录\"]"
+            "TextView[text=\"确定\"||text=\"登录\"||text=\"立即登录\"||text=\"登 录\"]"
           ]
         },
         {
@@ -1141,6 +1256,35 @@
           "action": "loginBind",
           "matches": [
             "[text*=\"登录\"] <<n FrameLayout >n TextView[(text=\"下一步\"||text=\"注册登录\")&&clickable=true]"
+          ]
+        },
+        {
+          "key": 8,
+          "action": "loginBind",
+          "matches": [
+            "Button[(text=\"获取验证码\"||text=\"开始使用\")&&clickable=true]"
+          ]
+        },
+        {
+          "key": 9,
+          "action": "loginBind",
+          "matches": [
+            "Button[(text=\"获取验证码\"||text=\"开始使用\")&&clickable=true]"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "打开微信小程序弹窗",
+      "key": 60,
+      "resetMatch": "activity",
+      "actionCd": 4000,
+      "rules": [
+        {
+          "key": 1,
+          "action": "clickCenter",
+          "matches": [
+            "[text*=\"即将打开\"] <<n LinearLayout +1 LinearLayout >n Button[text=\"允许\"]"
           ]
         }
       ]
@@ -1362,6 +1506,11 @@
     {
       "key": 50,
       "name": "登录按钮",
+      "enable":true
+    },
+    {
+      "key": 60,
+      "name": "打开微信小程序弹窗",
       "enable":true
     }
   ]

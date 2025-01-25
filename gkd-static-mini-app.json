@@ -1,0 +1,297 @@
+{
+  "id": 107,
+  "name": "小程序自动化——统一维护",
+  "version": 20,
+  "author": "gkd",
+  "updateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/gkd-static-mini-app.json",
+  "checkUpdateUrl":"http://icp_p_121_1c30.ldcvh.china-yun.net/gkd-static-mini-app.json",
+  "globalGroups": [
+    {
+      "name": "开屏广告",
+      "key": 0,
+      "matchTime": 10000,
+      "resetMatch": "activity",
+      "actionMaximum": 30,
+      "rules": [
+
+      ]
+    },
+    {
+      "name": "局部广告",
+      "key": 6,
+      "matchTime": 50000,
+      "actionMaximum": 30,
+      "resetMatch": "activity",
+      "rules": [
+
+      ]
+    },
+    {
+      "name": "权限设置",
+      "key": -1,
+      "matchTime": 10000,
+      "actionMaximum": 2,
+      "resetMatch": "activity",
+      "actionCdKey": 0,
+      "rules": [
+      ]
+    },
+    {
+      "name": "隐私用户协议确认框",
+      "key": 24,
+      "resetMatch": "activity",
+      "rules": [
+        {
+          "key": 25,
+          "action": "clickCenter",
+          "matches": [
+            "[text*=\"已阅读并接受\"] - FrameLayout > CheckBox"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "隐私用户协议弹窗",
+      "key": 25,
+      "resetMatch": "activity",
+      "matchTime": 3000,
+      "rules": [
+        {
+          "quickFind": true,
+          "key": 1,
+          "desc": "位置信息",
+          "action": "clickCenterAgree",
+          "matches": [
+            "[text*=\"位置信息\"] <<n [id*=\"id/content\"] >n Button[text=\"允许\"||text=\"确定\"||text=\"确认\"||desc=\"说明\"]"
+          ]
+        },
+        {
+          "quickFind": true,
+          "key": 2,
+          "desc": "位置信息",
+          "action": "clickCenter",
+          "matches": [
+            "[text*=\"隐私政策\"] <<n [id=\"android:id/content\"] >n Button[text=\"同意并继续\"]"
+          ]
+        },
+        {
+          "key": 1,
+          "actionCd": 5000,
+          "action": "clickCenterAgree",
+          "matches": [
+            "[text*=\"隐私\"] <<n FrameLayout >n [text=\"同意\"||desc=\"同意\"||text=\"Agree\"||text=\"agree\"||desc=\"Agree\"||desc=\"agree\"||desc=\"同意并继续\"||text=\"同意并继续\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "打开微信小程序弹窗",
+      "key": 60,
+      "resetMatch": "activity",
+      "actionCd": 4000,
+      "rules": [
+        {
+          "key": 1,
+          "action": "clickCenterAgree",
+          "matches": [
+            "[text*=\"即将打开\"] <<n LinearLayout +1 LinearLayout >n Button[text=\"允许\"]"
+          ]
+        }
+      ]
+    }
+  ],
+  "apps": [
+    {
+      "id": "com.android.systemui",
+      "name": "系统界面",
+      "groups":[
+        {
+          "key": 4,
+          "name":"通知提示-通知授权",
+          "desc":"触发点击禁用的操作",
+          "rules":[
+            {
+              "activityIds":[],
+              "matches":"[text*=\"通知授权\"] <<n [id=\"android:id/content\"] >n [text=\"允许\"]",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1713347885974"
+            }
+          ],
+          "enable":true
+        }
+      ]
+    },
+    {
+      "id": "com.android.permissioncontroller",
+      "name": "权限控制器",
+      "groups":[
+        {
+          "key": 9,
+          "name":"功能类权限",
+          "rules":[
+            {
+              "key": 0,
+              "activityIds":[],
+              "desc":"禁止电话授权的操作",
+              "matches":"[text*=\"请求电话权限\"] <<n [vid=\"grant_dialog\"] >n [vid=\"permission_deny_button\"]",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1713350952183"
+            },
+            {
+              "key": 1,
+              "activityIds":[],
+              "desc":"允许存储授权操作",
+              "matches":"[text*=\"存储权限\"] <<n [vid=\"grant_dialog\"] >n [vid=\"permission_allow_button\"]",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1713346978690"
+            },
+            {
+              "key": 2,
+              "activityIds":[],
+              "desc": "权限请求",
+              "matches": "[text=\"权限请求\"] <<n [id=\"android:id/content\"] >n [text=\"仅使用时允许\"]",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1724899501568"
+            }
+          ],
+          "enable":true
+        }
+      ]
+    },
+    {
+      "id": "com.lbe.security.miui",
+      "name": "权限控制器",
+      "groups":[
+        {
+          "key": 9,
+          "name":"功能类权限",
+          "rules":[
+            {
+              "key": 0,
+              "activityIds":[],
+              "desc":"允许读写照片文件",
+              "matches":"[text*=\"读写设备\"] <<n [id=\"android:id/content\"] >n [text*=\"允许\"]",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1721036726195"
+            }
+          ],
+          "enable":true
+        }
+      ]
+    },
+    {
+      "id": "com.cctv.yangshipin.app.androidp",
+      "name": "央视频",
+      "groups":[
+        {
+          "key": 0,
+          "name":"初始导航页",
+          "desc":"触发导航点击操作",
+          "rules":[
+            {
+              "activityIds":"com.tencent.videolite.android.ui.GuidePageActivity",
+              "matches":"[vid=\"btn_start\"]",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1713433503485"
+            }
+          ],
+          "enable":true
+        }
+      ]
+    },
+    {
+      "id": "com.vivo.hybrid",
+      "name": "快应用框架服务",
+      "groups":[
+        {
+          "key": 9,
+          "name":"订阅消息权限",
+          "desc":"触发不允许本次操作",
+          "rules":[
+            {
+              "activityIds":[],
+              "matches":"[text*=\"订阅消息\"] <n LinearLayout + [vid*=\"close\"]",
+              "snapshotUrls":"https://i.gkd.li/snapshot/1718619996655"
+            }
+          ],
+          "enable":true
+        }
+      ]
+    },
+    {
+      "id": "li.songe.gkd.debug",
+      "enable":false
+    }
+  ],
+  "categories": [
+    {
+      "key": 0,
+      "name": "开屏广告 ",
+      "enable":true
+    },
+    {
+      "key": 1,
+      "name": "青少年模式 ",
+      "enable":true
+    },
+    {
+      "key": 2,
+      "name": "更新提示 ",
+      "enable":true
+    },
+    {
+      "key": 3,
+      "name": "评价提示",
+      "enable":true
+    },
+    {
+      "key": 4,
+      "name": "通知提示",
+      "enable":true
+    },
+    {
+      "key": 5,
+      "name": "定位提示",
+      "enable":true
+    },
+    {
+      "key": -1,
+      "name": "权限提示",
+      "enable":true
+    },
+    {
+      "key": 6,
+      "name": "局部广告",
+      "enable":true
+    },
+    {
+      "key": 7,
+      "name": "全屏广告",
+      "enable":true
+    },
+    {
+      "key": 8,
+      "name": "分段广告",
+      "enable":true
+    },
+    {
+      "key": 9,
+      "name": "功能类",
+      "enable":true
+    },
+    {
+      "key": 10,
+      "name": "列表页滚动一类",
+      "enable":true
+    },
+    {
+      "key": 24,
+      "name": "隐私确认框",
+      "enable":true
+    },
+    {
+      "key": 25,
+      "name": "隐私用户协议",
+      "enable":true
+    },
+    {
+      "key": 60,
+      "name": "打开微信小程序弹窗",
+      "enable":true
+    }
+  ]
+}
